@@ -104,11 +104,11 @@ class LoginApi(APIView):
                 user_password = [user.password for user in users]
 
                 if user_serializer.data['password'] in user_password:
-                    return Response({'message': "Thành công"})
+                    return Response({"success": True,'message': "Thành công"})
                 else:
-                    return Response({'message': "Mật khẩu không đúng"})
+                    return Response({"success": False,'message': "Mật khẩu không đúng"})
 
-            return Response({'message': "Thất bại"})
+            return Response({"success": False,'message': "Thất bại"})
 
         except Exception as e:
             print(e)
@@ -116,22 +116,42 @@ class LoginApi(APIView):
 
 class ProfileUserAPI(APIView):
 
-    def post(self, request, id_user):
-        user = profile_user.objects.get(id_user=id_user)
-        user_profile_serializer = ProfileUserSerializer(instance=user,data=request.data)
+    def post(self, request):
+
+        # user_profile_serializer = ProfileUserSerializer(instance=user,data=request.data)
         # print('hello')
         # print(request.data)
-        if user_profile_serializer.is_valid():
-            try:
-                user_profile_serializer.save()
+        # if user_profile_serializer.is_valid():
 
-                return Response({"success": True, "message": "Apply thành công"})
-            # except IntegrityError:
-            #     return Response({"success": False, "message": "Bản ghi đã tồn tại"})
+        try:
+
+            user = profile_user.objects.get(id_user=request.data['id_user'])
+            print('hello')
+            print(user)
+            # if user:
+            user.cv = request.data['cv']
+            user.full_name = request.data['full_name']
+            user.save()
+            return Response({"success": True, "message": "Cập nhật thành công"})
+
+        # except IntegrityError:
+        #     # user = profile_user.objects.get(id_user=request.data['id_user'])
+        #     # user.full_name = request.data['full_name']
+        #     # user.cv = request.data['cv']
+        #     # user.save()
+        #     return Response({"success": False, "message": "Bản ghi đã tồn tại"})
+        except Exception as e:
+
+            try:
+                user_profile_serializer = ProfileUserSerializer(data=request.data)
+                if user_profile_serializer.is_valid():
+                    user_profile_serializer.save()
+                    return Response({"success": True, "message": "Apply thành công"})
             except Exception as e:
-                return Response({"success": False, "message": "Đã có lỗi xảy ra"})
-        else:
-            return Response({"success": False, "message": user_profile_serializer.errors})
+                return Response({"success": False, "message": e})
+            return Response({"success": False, "message": e})
+        # except Exception as e:
+        #     return Response({"success": False, "message": e})
 
     def get(self, request):
         user = profile_user.objects.all()
