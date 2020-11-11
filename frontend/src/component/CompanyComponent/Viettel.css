@@ -1,0 +1,104 @@
+.Viettel_company_main_content{
+    width: 70%;
+    margin-top: 250px;
+    margin-left: 228px;
+
+}
+.Viettel_company_main_content_header{
+    width: 100%;
+    height: 250px;
+    background-color: white;
+    display: flex;
+   
+}
+.Viettel_company_main_content_header img{
+    margin-left: 135%;
+    margin-top: 40px;
+    width: 200px
+}
+.Viettel_company_name{
+    margin-top: -17px;
+    margin-left: 70px;
+}
+.Viettel_company_name p{
+    margin-left: 250px;
+    margin-top: 50px;
+    font-size: 35px;
+}
+.Viettel_company_name .Viettel_company_icon{
+    margin-left: 250px;
+    font-size: 20px;
+}
+.Viettel_company_name .Viettel_company_icon ul{
+    list-style: none;
+    padding: 0;
+    margin-top: -10px;
+} 
+.Viettel_company_name .Viettel_company_icon ul li{
+   padding-top: -20px;
+} 
+.Viettel_company_name .Viettel_company_icon ul li p{
+   font-size: 20px;
+   margin-top: -27px;
+   margin-left: 40px;
+} 
+.Viettel_company_name .Viettel_company_icon ul li .icon{
+    font-size: 20px;
+ } 
+ .Viettel_company_name .Viettel_company_icon ul li .country_flag{
+     display: flex;
+     align-items: center;
+     
+ }
+ .Viettel_company_name .Viettel_company_icon ul li .country_flag img{
+     width: 30px;
+     height: 30px;
+     margin-left: 5px;
+ }
+ .Viettel_company_name .Viettel_company_icon ul li .country_flag .country_flag_icon{
+    margin-top: -45px;
+    margin-left: 20px;  
+}
+.Viettel_company_name .Viettel_company_icon ul li .country_flag .country_flag_icon #icon{
+   margin-top: 0px;
+}
+.Viettel_company_name .Viettel_company_icon ul li .country_flag .country_flag_icon #text{
+    margin-top: -30px;
+ }
+ /*================================================================================*/
+ .Viettel_company_main_content_intro{
+     background-color: white;
+     width: 70%;
+     height: 300px;
+     margin-top: 20px;
+     margin-left: 228px;
+     padding-left: 140px;
+     box-sizing: border-box;
+     border-radius: 5px;
+ }
+ .Viettel_company_main_content_intro p{
+     font-weight: 500;
+     padding-top: 20px;
+     padding-left: 180px;
+     font-size: 30px;
+ }
+ .Viettel_company_main_content_intro .content{
+     margin-left: 30px;
+     width: 80%;
+     font-size: 17px;
+     margin-bottom: 20px;
+ }
+ /*================================================================================*/
+ .Viettel_company_main_content_choice{
+    background-color: white;
+    width: 70%;
+    height: 3000px;
+    margin-top: 30px;
+    margin-left: 228px;
+    border-radius: 5px;
+ }
+ .Viettel_company_main_content_choice .Job_title{
+     font-size: 30px;
+     margin-left: 20px;
+     padding-top: 20px;
+ }

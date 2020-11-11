@@ -1,0 +1,94 @@
+
+.main_container_java{
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    margin-top:10px;
+   
+}
+.header_search_job{
+    margin-left: 120px;
+    margin-top: -10px;
+}
+.numberJob{
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 30px;
+    box-sizing: border-box;
+    padding: 20px;
+    font-weight: 400;
+}
+.descriptionJob{
+    font-family: inherit;
+    background-color:  #ccccff;
+    padding-bottom: 20px;
+    border-top: 1px solid #FF9933;
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.descriptionJob:hover{
+    opacity: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    background-color: white;
+    transition: 0.5s;
+}
+.descriptionJob:hover .nameJob{
+    color: red;
+    transition: 0.5s;
+
+}
+.SpecificallyJob{
+    display: flex;
+    padding-top: 20px;
+}
+.logoCompany{
+    width: 150px;
+    margin-left: 40px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+.logoCompany div{
+  margin-left: 20px;
+  margin-top: 50px;   
+}
+.contentJob{
+    width: 700px;
+    padding-left: 20px;
+}
+.nameJob{
+    font-size: 25px;
+    font-weight: 500;
+}
+.salaryJob{
+    color:green;
+    font-size: 15px;
+    display:flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: -2px;
+    font-weight: 500;
+}
+.priorityJob ul{
+    padding-left: 17px;
+    font-size: 15px;
+}
+.priorityJob ul li{
+    font-weight: 570;
+    margin-top: 5px;
+}
+.iconJob{
+    font-size: 25px;
+    margin-right: 5px;
+}
+.PlaceJob{
+    width: 250px;
+    margin-top: 25px;
+}
+.PlaceJob > div{
+    display: flex;
+    margin-top: 20px;
+}
+.icon{
+    margin-right: 10px;
+}

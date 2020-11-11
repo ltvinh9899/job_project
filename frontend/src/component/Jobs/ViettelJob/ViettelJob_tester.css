@@ -1,0 +1,179 @@
+.Viettel_tester_main{
+    
+
+}
+.Viettel_tester_main_image{
+    background-color: red;
+    width: 70%;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    z-index: -1;
+}
+.Viettel_tester_main_image{
+    position: relative;
+}
+.Viettel_tester_main_image img{
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    top:50px;
+    left: 40px;
+}
+.Viettel_tester_main_content{
+    background-color: white;
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 250px;
+}
+.Viettel_tester_main_content_logo{
+    flex:3;
+    background-color: white;
+    
+}
+.Viettel_tester_main_content_title{
+    flex:7;
+   
+}
+.Viettel_tester_main_content_logo_icon img{
+    width: 250px;
+    height: 150px;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+.Viettel_tester_main_content_logo_infor{
+    background-color:#f3f3f3;
+    width: 250px;
+    height: 250px;
+    margin-left: 30px;
+    margin-top: 20px;
+
+}
+.Viettel_tester_main_content_logo_infor_title{
+    text-align: center;
+    font-size: 12px;
+    padding-top: 4px;
+}
+.Viettel_tester_main_content_logo_infor_introduce{
+
+}
+.Viettel_tester_main_content_logo_infor_introduce ul li{
+    list-style: none;
+    margin-top: 20px;
+}
+.Viettel_tester_main_content_logo_infor_introduce ul .country{
+    list-style: none;
+    margin-left: 40px;
+    margin-top: 50px;
+}
+.Viettel_tester_main_content_logo_infor_introduce ul .country img{
+    width: 40px;
+    height: 40px;
+}
+.Viettel_tester_main_content_logo_infor_introduce ul  .country_name{
+  margin-left: 15px;
+  margin-top: -32px;
+}
+.Viettel_tester_main_content_logo_infor_introduce ul .staff{
+   
+}
+.Viettel_tester_main_content_logo_infor_introduce ul .staff .staff_number{
+    font-size: 35px;
+ }
+ .Viettel_tester_main_content_logo_infor_introduce ul  .staff_name{
+    margin-left: 55px;
+    margin-top: -25px;
+ }
+ .Viettel_tester_main_content_logo_infor_introduce ul .schedule{
+   
+}
+.Viettel_tester_main_content_logo_infor_introduce ul .schedule .schedule_number{
+    font-size: 35px;
+ }
+ .Viettel_tester_main_content_logo_infor_introduce ul  .schedule_name{
+    margin-left: 55px;
+    margin-top: -25px;
+ }
+ /*================================================================================================================*/
+ .Viettel_tester_main_content_title_name{
+     margin-top: 50px;
+     margin-left: 25px;
+ }
+ .Viettel_tester_main_content_title_frame{
+     
+ }
+ .Viettel_tester_main_content_title_frame ul {
+     display: flex;
+     list-style: none;
+     padding: 0;
+ }
+ .Viettel_tester_main_content_title_frame ul li{
+     margin-left: 30px;
+     border: 1px solid black;
+     width: 60px;
+     text-align: center;
+     text-decoration: none;
+     color:black
+ }
+ .company_frame{
+    color: black;
+    text-decoration: none;
+}
+ .company_frame:hover{
+    color:red;
+    cursor: pointer;
+    font-weight: 500;
+}
+ .Viettel_tester_main_content_title_description{
+
+ }
+ .Viettel_tester_main_content_title_description ul{
+     list-style: none;
+     padding-left: 30px;
+     opacity: 0.7;
+ }
+ .Viettel_tester_main_content_title_description ul li > div{
+     margin-top: 10px;
+     display: flex;
+ }
+ .Viettel_tester_main_content_title_description ul li .icon{
+     font-size: 26px;
+ }
+ .Viettel_tester_main_content_title_description ul li .text{
+    margin-top: 5px;
+}
+.salary_description{
+   color: green;
+}
+/*=================================================================================================*/
+.Viettel_tester_main_content_title_apply{
+  margin-left: 70px;
+}
+.Viettel_tester_main_content_title_apply .apply_button{
+    background-color:#cc0000;
+    width: 500px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+.Viettel_tester_main_content_title_unique{
+
+}
+.Viettel_tester_main_content_title_unique img{
+    width: 90%;
+    height: 530px;
+    margin-top: 5%;
+    margin-left: 8%;
+}
+.skill{
+    margin-left: -15px;
+}
+

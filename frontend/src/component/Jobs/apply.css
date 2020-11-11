@@ -1,0 +1,92 @@
+.apply_container{
+    width: 700px;
+    height: 250px;
+    background-color: white;
+    margin-left: 120px;
+}
+.apply_title{
+    font-size: 15px;
+    text-align: center;
+    padding-top: 20px;
+    margin-left: -40px;
+}
+.apply_form{
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.apply_form div{
+    display: flex;
+    align-items: center;
+}
+.apply_form span{
+    flex:2;
+}
+.apply_form input{
+    flex: 8;
+}
+.apply_form button{
+    flex: 8;
+}
+.apply_form .name_form ::placeholder{
+   padding-left: 180px;
+}
+.apply_form input{
+  
+    width: 400px;
+    height: 25px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #808184;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    margin-right: 70px;
+}
+.cv_form{
+    margin-top: 0px;
+}
+.cv_form button{
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    width: 50px;
+    height: 40px;
+    margin-right: 70px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #808184;
+}
+.sendCv_button{
+    margin-left: 40px;
+}
+.sendCv_button .cv_button{
+    background-color:#cc0000;
+    width: 590px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+.form_error{
+    display: flex;
+    margin-top: 40px;
+    margin-left: 150px;
+}
+.multiply_icons{
+    width: 25px;
+    height: 25px;
+}
+.form_error p{
+    margin-top: -35px;
+}
+
