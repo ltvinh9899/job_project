@@ -154,9 +154,9 @@ class Apply extends Component {
 
                     <div class="cv_form">
                         <span>  Your CV :</span>
-                        <button onClick={this.handleClick} >
+                        {/* <button onClick={this.handleClick} >
                             <span>{this.state.buttonName}</span>
-                        </button>
+                        </button> */}
                         <input type="file"
                             ref={this.applyCVRef}
                             // style={{ display: 'none' }}

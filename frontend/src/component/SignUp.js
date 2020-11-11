@@ -46,6 +46,13 @@ class Login extends Component {
             </div>;
             ReactDOM.render(element, document.getElementsByClassName('log_error_sign')[1]);
         } 
+        if (document.getElementsByClassName('log_sign')[2].value == "") {
+            const element = <div>
+                <img class="multiply_icons" src={multiply}></img>
+                <p style={{ marginTop: "-25px", marginLeft: "80px", fontWeight: 500 }}>can't be blank</p>
+            </div>;
+            ReactDOM.render(element, document.getElementsByClassName('log_error_sign')[2]);
+        } 
 
 
     }
@@ -157,7 +164,17 @@ class Login extends Component {
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error_sign"></div>
                         <input type="password" placeholder="Enter password" name="password" onChange={this.handlePasswordChange} class="log_sign" />
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error_sign"></div>
-                        <button class="login_button" type="submit">Sign Up</button>
+                        <button class="login_button" onClick={() => {
+                             if (document.getElementsByClassName('log_sign')[0].value != "" && document.getElementsByClassName('log_sign')[1].value != "") {
+                                 this.child_log_closeModal() 
+                               
+                            }
+                            else {
+                                this.check_form_log()
+                            } 
+                           
+                        }}
+                        >Sign Up</button>
                         <p class="message_sign">Already registered? </p>
                         <p>{this.state.message.message}</p>
                     </form>

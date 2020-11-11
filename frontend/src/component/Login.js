@@ -114,21 +114,24 @@ class Login extends Component {
             }
         })
             .then(res => {
+                const messages = res.data;
+                console.log(messages);
+                this.setState({ messages });
                 console.log(res.data);
             }).catch((error) => {
                 console.log(error)
             });
         
-        axios.get('http://127.0.0.1:8000/user-login/').then(res => {
-            // handle success
-            const message = res.data;
-            this.setState({ message });
-            console.log(message);
-        })
-            .catch(error => {
-                // handle error
-                console.log(error);
-            })
+        // axios.get('http://127.0.0.1:8000/user-login/').then(res => {
+        //     // handle success
+        //     const message = res.data;
+        //     this.setState({ message });
+        //     console.log(message);
+        // })
+        //     .catch(error => {
+        //         // handle error
+        //         console.log(error);
+        //     })
 
     }
 
@@ -146,19 +149,21 @@ class Login extends Component {
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error">
 
                         </div>
-                        <button class="login_button" type="submit" onClick={() => {
+                        <button class="login_button"  onClick={() => {
+                            if(this.state.messages.success == true){
+                                this.child_log_closeModal()
+                            }
+                            if (document.getElementsByClassName('log')[0].value == "" && document.getElementsByClassName('log')[1].value == "") {
+                                this.check_form_log();
+                            }
                           
-                            return (
-                                <form>
-                                    <p>{this.state.messages.message}</p>
-                                </form>
-                                
-                            )
+                            
                         }}>login</button>
+                        <p class="message_login" style={{color:"red"}}>{this.state.messages.message}</p>
                         {/* <p class="message_login">Hello</p> */}
-                        <p>{this.state.messages.message}</p>
+                        {/* <p>{this.state.messages.message}</p>
                         {() => {
-                            if (this.state.messages.message == "Thành công") {
+                            if (this.state.messages == "Thành công") {
                                 return (
                                     <p class="message_login">Thành công</p>
                                 )
@@ -171,7 +176,7 @@ class Login extends Component {
                             
                         }
 
-                        }
+                        } */}
                         
                         <p class="message_login" >Not registered? <a onClick={() => this.move_to_SignUp()}>Create an account</a></p>
                         

@@ -56,7 +56,7 @@ class Welcome extends Component {
   }
 
   render() {
-    const input_array = ["Java", "Viettel", "VNG", "FPT", ".NET", "NodeJs", "Android", "IOS", "C++", "Sun", "Tester"]
+
     if (this.state.key_value === "") {
       return (
         <div id="container">
@@ -110,7 +110,7 @@ class Welcome extends Component {
                       <Modal
                         visible={this.state.visible_second}
                         width="400"
-                        height="400"
+                        height="450"
                         backgroundColor="red"
                         effect="fadeInUp"
                         onClickAway={() => this.closeModal()}
@@ -287,7 +287,39 @@ class Welcome extends Component {
         </div>
       )
     }
-    let input_value;
+    let input_value = document.getElementById("search_input_text").value;
+    switch (input_value) {
+      case "Viettel":
+        return (
+          <Redirect to="./company/2" />
+        )
+        break;
+      case "Misa":
+        return (
+          <Redirect to="./company/5" />
+        )
+        break;
+      case "VNG":
+        return (
+          <Redirect to="./company/4" />
+        )
+        break;
+      case "FPT":
+        return (
+          <Redirect to="./company/3" />
+        )
+        break;
+      case "Sun* Inc":
+        return (
+          <Redirect to="./company/6" />
+        )
+        break;
+      default:
+        return (
+          <Redirect to="./error" />
+        )
+    }
+    /* let input_value;
     if (input_array.includes(document.getElementById("search_input_text").value)) {
 
       switch (input_value) {
@@ -296,7 +328,8 @@ class Welcome extends Component {
             <Redirect to="./company/2" />
           )
           break;
-    
-    }
+
+      } */
   }
-  export default Welcome;
+}
+export default Welcome;
