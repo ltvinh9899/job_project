@@ -13,7 +13,7 @@ urlpatterns = [
     path('company-detail/<str:id_company>', views.companyDetail, name='company-detail'),
     path('user-create/', views.SignUserAccountAPI.as_view(), name='user-create'),
     path('user-login/', views.LoginApi.as_view(), name='user-login'),
-    path('user-apply/',views.ProfileUserAPI.as_view(), name='user-apply'),
+    path('user-apply/<str:id_job>/',views.ProfileUserAPI.as_view(), name='user-apply'),
     # path('user-profile-list/',views.userProfileList, name='user-profile-list'),
 
 ]

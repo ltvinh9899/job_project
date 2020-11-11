@@ -116,10 +116,11 @@ class LoginApi(APIView):
 
 class ProfileUserAPI(APIView):
 
-    def post(self, request):
-        user_profile_serializer = ProfileUserSerializer(data=request.data)
-        print('hello')
-        print(request.data)
+    def post(self, request, id_user):
+        user = profile_user.objects.get(id_user=id_user)
+        user_profile_serializer = ProfileUserSerializer(instance=user,data=request.data)
+        # print('hello')
+        # print(request.data)
         if user_profile_serializer.is_valid():
             try:
                 user_profile_serializer.save()
