@@ -10,12 +10,15 @@ class addressSerializer(serializers.ModelSerializer):
 class CompanyInfoSerializer(serializers.ModelSerializer):
     city = serializers.SerializerMethodField('get_city', read_only=True)
     country = serializers.SerializerMethodField('get_country', read_only=True)
+    address = serializers.SerializerMethodField('get_address', read_only=True)
     # job = serializers.SerializerMethodField('get_job', read_only=True)
 
     def get_country(self, obj):
         return obj.id_country.name_country
     def get_city(self, obj):
         return obj.id_address.id_district.id_city.name_city
+    def get_address(self,obj):
+        return obj.id_address.address
 
     # def get_job(self, obj):
     #     return JobSerializer(obj.id_company).data
