@@ -20,6 +20,7 @@ class Job(models.Model):
     name = models.CharField(max_length=255, default='dev')
     description = models.TextField(max_length=10000)
     offer_salary = models.IntegerField(default=0)
+    requirement = models.TextField(max_length=10000,default="type requirement in here")
 
 class job_type(models.Model):
     name_job_type = models.CharField(max_length=255)
