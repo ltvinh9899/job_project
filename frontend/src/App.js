@@ -28,6 +28,7 @@ import Second from './component/binComponent/second'
 import Container from './component/binComponent/container'
 
 import Job_list from './component/JobComponent/Job_list'
+import Job_follow_position from './component/JobComponent/Job_follow_position'
 
 class App extends Component {
     render() {
@@ -52,6 +53,7 @@ class App extends Component {
                 <Route path="/job-detail/:id" component={ViettelJob_tester}/>
                 <Route path="/job-list-follow-type/:id" component={Java}/>
                 <Route path="/job-list" component={Job_list}/>
+                <Route path="/job-list-follow-position/:id" component={Job_follow_position}/>
             </BrowserRouter>
         )   
        

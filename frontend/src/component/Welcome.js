@@ -257,11 +257,11 @@ class Welcome extends Component {
               <div class="footer_search_position">
                 <div>Jobs by Position</div>
                 <ul>
-                  <li><a>Internship</a></li>
-                  <li><a>Fresher</a></li>
-                  <li><a>Junior</a></li>
-                  <li><a>Leader</a></li>
-                  <li><a>Senior</a></li>
+                  <li><a><Link to="/job-list-follow-position/3" className='text-link-footer'>Internship</Link></a></li>
+                  <li><a><Link to="/job-list-follow-position/4" className='text-link-footer'>Fresher</Link></a></li>
+                  <li><a><Link to="/job-list-follow-position/2" className='text-link-footer'>Junior</Link></a></li>
+                  <li><a><Link to="/job-list-follow-position/5" className='text-link-footer'>Leader</Link></a></li>
+                  <li><a><Link to="/job-list-follow-position/1" className='text-link-footer'>Senior</Link></a></li>
                 </ul>
               </div>
               <div class="footer_search_company">
