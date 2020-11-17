@@ -1,19 +1,22 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Route, Link , Switch} from "react-router-dom";
-import Second from "./second"
-import First from "./first"
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { TiTick } from "react-icons/ti"
+import axios from "axios";
+import { BrowserRoute, BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import First from './first'
+import Second from './second'
 class Container extends Component {
-    constructor(props){
-        super(props)
-    }
     render() {
-        console.log("propsContainer:", this.props)
         return (
+            <BrowserRouter>
                 <Switch>
-                    <Route path="/back" component={First}  /> 
-                    <Route path="/second" component={Second}  /> 
+                    <Route path="/" component={First} exact />
+                    <Route path="/second" component={Second} exact />
                 </Switch>
+            </BrowserRouter>
+
         )
     }
 }
-export default Container;
+
+export default Container; 

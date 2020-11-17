@@ -18,7 +18,7 @@ class Logout extends Component {
                    </div>
                    <div  class="logout_page_button">
                        <div class="button_cancel" onClick={ () => this.child_closeModal()}>Cancel</div>
-                       <div class="button_oke"><Link class="text_link" to="./">Oke</Link></div>
+                       <div class="button_oke"><Link class="text_link" to="/" >Oke</Link></div>
                    </div>
                </div>
             </div>

@@ -56,7 +56,7 @@ class Java extends Component {
             <div class="container">
                 <div class="header_company_list">
                     <div class="header_company_left">
-                        <img src={Logo} />
+                    <Link to="/Welcome"><img src={Logo} /></Link>
                         <span>IT JOB FOR EVERYONE</span>
                     </div>
                     <div class="header_company_right">
@@ -108,7 +108,7 @@ class Java extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="main_container_java">
+                <div class="main_container_java" style={{height:"auto"}}>
 
                     <div class="numberJob">
                         <span>Jobs</span>

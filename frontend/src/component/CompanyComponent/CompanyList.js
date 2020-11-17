@@ -58,7 +58,7 @@ class CompanyList extends Component {
             <div class="container_company">
                 <div class="header_company_list">
                     <div class="header_company_left">
-                        <img src={Logo} />
+                    <Link to="/Welcome"><img src={Logo} /></Link>
                         <span>IT JOB FOR EVERYONE</span>
                     </div>
                     <div class="header_company_right">
@@ -119,7 +119,7 @@ class CompanyList extends Component {
                                     <Link to={`/company/${company.id}`} class="Viettel_link">
                                     <li key={company.id}>
                                         <div class="name_list_company">
-                                        <h2>{company.name_company}</h2>
+                                        <h2 style={{textAlign:"center"}}>{company.name_company}</h2>
                                         </div>
                                         <div class="other_introduce">
                                             <div class="frame_logo"><img style={{width:"160px", height:"130px"}} src={company.logo_company} /></div>

@@ -26,19 +26,19 @@ class Java extends Component {
     }
 
     componentDidMount() {
-        const id_job_type = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:8000/job-list/${id_job_type}/`).then(res => {
+        const id_location = this.props.match.params.id;
+        axios.get(`http://127.0.0.1:8000/job-list/${id_location}/`).then(res => {
             // handle success
             const java_jobs = res.data;
             this.setState({ java_jobs });
             console.log(java_jobs);
-        })
-            .catch(error => {
-                // handle error
-                console.log(error);
-            })
-
-    }
+          })
+          .catch( error => {
+            // handle error
+            console.log(error);
+          })
+      
+      }
 
     openModal() {
         this.setState({
@@ -56,12 +56,12 @@ class Java extends Component {
             <div class="container">
                 <div class="header_company_list">
                     <div class="header_company_left">
-                        <Link to="/Welcome"><img src={Logo} /></Link>
+                        <img src={Logo} />
                         <span>IT JOB FOR EVERYONE</span>
                     </div>
                     <div class="header_company_right">
                         <ul>
-
+                        
                             <li class="job">
                                 <Link to="/job-list" class="text-link" style={{ textDecoration: 'none', color: 'white' }}>
                                     <div>
@@ -111,63 +111,63 @@ class Java extends Component {
                 <div class="main_container_java">
 
                     <div class="numberJob">
-                        <span>Job</span>
+                        <span>Jobs</span>
                     </div>
-                    <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px" }}>
+                    <ul style={{listStyle:"none", marginLeft:"-40px", paddingBottom:"20px"}}>
                         {this.state.java_jobs.map(java_job => {
-                            return (
+                  return (
 
-                                <Link to={`/job-detail/${java_job.id}`} class="Viettel_link">
-                                    <li key={java_job.id}>
-                                        <div class="Job">
-                                            <div class="descriptionJob">
-                                                <div class="SpecificallyJob">
-                                                    <div class="logoCompany">
-                                                        <div><img src={java_job.logo_company} /></div>
-                                                    </div>
-                                                    <div class="contentJob" style={{ marginLeft: "30px", marginTop: "60px" }}>
-                                                        <div class="nameJob">{java_job.name}</div>
-                                                        <div class="salaryJob">
-                                                            <div class="iconJob"><AiOutlineDollarCircle></AiOutlineDollarCircle></div>
-                                                            <span>{java_job.offer_salary}  USD</span>
-                                                            <div class="iconJob" style={{ marginLeft: "20px", fontSize: "22px" }}><BsPeopleCircle></BsPeopleCircle></div>
-                                                            <span style={{ fontSize: "18px", marginLeft: "5px" }}>{java_job.job_position}</span>
-                                                        </div>
-                                                        <div class="priorityJob">
-                                                            {/* {java_job.description} */}
-                                                        </div>
-                                                    </div>
-                                                    <div class="PlaceJob" style={{ marginTop: "10px", marginRight: "20px", width: "540px" }}>
-                                                        <div class="city">
-                                                            <div class="icon">
-                                                                <FaCity ></FaCity>
-                                                            </div>
-                                                            <span>{java_job.city}</span>
-
-                                                        </div>
-                                                        <div class="distric">
-                                                            <div class="icon">
-                                                                <GiModernCity ></GiModernCity>
-                                                            </div>
-                                                            <span>{java_job.districst}</span>
-                                                        </div>
-                                                        <div class="address">
-                                                            <div class="icon">
-                                                                <FaHome></FaHome>
-                                                            </div>
-                                                            <span>{java_job.address}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                    <Link to={`/job-detail/${java_job.id}`} class="Viettel_link">
+                        <li key={java_job.id}>
+                    <div class="Job">
+                        <div class="descriptionJob">
+                            <div class="SpecificallyJob">
+                                <div class="logoCompany">
+                                    <div><img src={java_job.logo_company} /></div>
+                                </div>
+                                <div class="contentJob" style={{ marginLeft:"30px", marginTop:"60px"}}>
+                                    <div class="nameJob">{java_job.name}</div>
+                                    <div class="salaryJob">
+                                        <div class="iconJob"><AiOutlineDollarCircle></AiOutlineDollarCircle></div>
+                                        <span>{java_job.offer_salary}  USD</span>
+                                        <div class="iconJob" style={{marginLeft:"20px", fontSize:"22px"}}><BsPeopleCircle></BsPeopleCircle></div>
+                                                <span  style={{ fontSize:"18px",marginLeft:"5px"}}>{java_job.job_position}</span>
+                                    </div>
+                                    <div class="priorityJob">
+                                        {/* {java_job.description} */}
+                                </div>
+                                </div>
+                                <div class="PlaceJob" style={{marginTop:"10px", marginRight:"20px", width:"540px"}}>
+                                    <div class="city">
+                                        <div class="icon">
+                                            <FaCity ></FaCity>
                                         </div>
-                                    </li>
-                                </Link>
+                                        <span>{java_job.city}</span>
 
-                            );
-                        })}
+                                    </div>
+                                    <div class="distric">
+                                        <div class="icon">
+                                            <GiModernCity ></GiModernCity>
+                                        </div>
+                                        <span>{java_job.districst}</span>
+                                    </div>
+                                    <div class="address">
+                                        <div class="icon">
+                                            <FaHome></FaHome>
+                                        </div>
+                                        <span>{java_job.address}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                    </Link>
+                    
+                  );
+                })}
                     </ul>
-
+                   
                 </div>
             </div>
         )

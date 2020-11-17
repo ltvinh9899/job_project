@@ -9,6 +9,7 @@ import Viettel_content from "./image/Viettel_content.png"
 
 
 import { AiFillHome } from "react-icons/ai"
+import { AiFillFlag } from "react-icons/ai"
 import { BsPeopleFill } from "react-icons/bs"
 import { BsPeopleCircle } from "react-icons/bs"
 import { BsSearch } from "react-icons/bs"
@@ -81,7 +82,7 @@ class FPT extends Component {
             <div class="viettel_container">
                 <div class="header_company_list">
                     <div class="header_company_left">
-                        <img src={Logo} />
+                    <Link to="/Welcome"><img src={Logo} /></Link>
                         <span>IT JOB FOR EVERYONE</span>
                     </div>
                     <div class="header_company_right">
@@ -134,23 +135,19 @@ class FPT extends Component {
                                 <img src={this.state.company_detail.logo_company} />
                             </div>
                             <div class="Viettel_company_name">
-                                <p>FPT software</p>
+                                <p >{this.state.company_detail.name_company}</p>
                                 <div class="Viettel_company_icon">
                                     <ul>
                                         <li>
                                             <div>
-                                                <SiGooglemaps class="icon"></SiGooglemaps>
-                                                <p>{this.state.company_detail.city}</p>
+                                                <SiGooglemaps class="icon" style={{ color: "blue" }}></SiGooglemaps>
+                                                <p>{this.state.company_detail.address}</p>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="country_flag">
-                                                <div>
-                                                    <AiFillSetting class="icon"></AiFillSetting>
-                                                    <p>Outsourcing</p>
-                                                </div>
-                                                <div class="country_flag_icon">
-                                                    <div id="icon"><img src={country} /></div>
+                                                <div class="country_flag_icon" style={{ marginTop: "0px", marginLeft: "0px" }}>
+                                                    <AiFillFlag class="icon" style={{ fontSize: "25px", color: "green" }}></AiFillFlag>
                                                     <div id="text"><p>{this.state.company_detail.country}</p></div>
 
                                                 </div>
@@ -160,7 +157,7 @@ class FPT extends Component {
                                         <li>
 
                                             <div>
-                                                <BiCalendar class="icon"></BiCalendar>
+                                                <BiCalendar class="icon" style={{ color: "black" }}></BiCalendar>
                                                 <p>Monday - Saturday</p>
                                             </div>
                                         </li>
@@ -170,8 +167,8 @@ class FPT extends Component {
                             </div>
                         </div>
                     </div>
-                    <div class="Viettel_company_main_content_intro">
-                        <p>Giới thiệu về {this.state.company_detail.name_company}</p>
+                    <div class="Viettel_company_main_content_intro" >
+                        <p style={{paddingTop:"40px"}}>Giới thiệu về {this.state.company_detail.name_company}</p>
                         <div class="content" id="first_content">
                             {this.state.company_detail.description_company}
                         </div>
@@ -179,7 +176,7 @@ class FPT extends Component {
                     </div>
                     <div class="Viettel_company_main_content_choice">
                         <div class="Job_title">Jobs</div>
-                        <ul style={{listStyle:"none", marginLeft:"-40px", paddingBottom:"20px"}}>
+                        <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px" }}>
                             {this.state.jobs_list.map(job => {
                                 return (
                                     <Link to={`/job-detail/${job.id}`} class="Viettel_link">
@@ -190,7 +187,7 @@ class FPT extends Component {
                                                         <div class="logoCompany">
                                                             <div><img src={job.logo_company} /></div>
                                                         </div>
-                                                        <div class="contentJob"  style={{ marginLeft:"30px", marginTop:"60px"}}>
+                                                        <div class="contentJob" style={{ marginLeft: "30px", marginTop: "60px" }}>
                                                             <div class="nameJob">{job.name}</div>
                                                             <div class="salaryJob">
                                                                 <div class="iconJob"><AiOutlineDollarCircle></AiOutlineDollarCircle></div>
@@ -202,7 +199,7 @@ class FPT extends Component {
                                                                 {/* {job.description} */}
                                                             </div>
                                                         </div>
-                                                        <div class="PlaceJob" style={{marginTop:"10px", marginRight:"20px", width:"540px"}}>
+                                                        <div class="PlaceJob" style={{ marginTop: "10px", marginRight: "20px", width: "540px" }}>
                                                             <div class="city">
                                                                 <div class="icon">
                                                                     <FaCity ></FaCity>
