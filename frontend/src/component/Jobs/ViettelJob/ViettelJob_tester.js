@@ -26,15 +26,19 @@ import "./ViettelJob_tester.css"
 import Apply from "../Apply"
 import Logout from '../Logout'
 import axios from "axios";
-
+import cookie from 'react-cookies'
+import { FaUserSecret } from "react-icons/fa"
+let user;
 class ViettelJob_tester extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible_first: false,
             visible_second: false,
-            job_detail: []
+            job_detail: [],
+            companies: [],
         }
+        user = cookie.load("user_name")
     }
 
     componentDidMount() {
@@ -44,6 +48,19 @@ class ViettelJob_tester extends Component {
             const job_detail = res.data;
             this.setState({ job_detail });
             console.log(job_detail);
+        })
+            .catch(error => {
+                // handle error
+                console.log(error);
+            })
+
+    }
+    componentDidMount1() {
+        axios.get('http://127.0.0.1:8000/companies-list/').then(res => {
+            // handle success
+            const companies = res.data;
+            this.setState({ companies });
+            console.log(companies);
         })
             .catch(error => {
                 // handle error
@@ -82,49 +99,61 @@ class ViettelJob_tester extends Component {
     render() {
         return (
             <div class="container">
-                <div class="header_company_list">
-                    <div class="header_company_left">
-                        <Link to="/Welcome"><img src={Logo} /></Link>
-                        <span>IT JOB FOR EVERYONE</span>
-                    </div>
-                    <div class="header_company_right">
-                        <ul>
-                            <li class="job">
-                                <Link to="/job-list" class="text-link" style={{ textDecoration: 'none', color: 'white' }}>
-                                    <div>
-                                        <BsPeopleFill class="job_icon"></BsPeopleFill>
-                                        <span>Job</span>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li class="company">
-                                <Link to="/Company_List" class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
-                                    <div>
-                                        <AiFillHome class="company_icon"></AiFillHome>
-                                        <span >Company</span>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li class="login">
-                                <div>
-                                    <BsPeopleCircle class="login_icon" onClick={() => this.openModal()}></BsPeopleCircle>
-                                    <span onClick={() => this.openModal("logout")}>Log out</span>
-                                    <Modal
-                                        visible={this.state.visible_first}
-                                        width="300"
-                                        height="80"
-                                        backgroundColor="red"
-                                        effect="fadeInUp"
-
-                                    >
-                                        <div class="loginScreen">
-                                            <Logout parentMethod={() => this.closeModal("logout")}></Logout>
+                <div class="header_container">
+                    <div class="header_company_list">
+                        <div class="header_company_left">
+                            <Link to="/Welcome"><img src={Logo} /></Link>
+                            <span>IT JOB FOR EVERYONE</span>
+                        </div>
+                        <div class="header_company_right">
+                            <ul>
+                                <li class="job">
+                                    <Link to="/job-list" class="text-link" style={{ textDecoration: 'none', color: 'white' }}>
+                                        <div >
+                                            <BsPeopleFill class="job_icon"></BsPeopleFill>
+                                            <span>Job</span>
                                         </div>
-                                    </Modal>
-                                </div>
-                            </li>
-                        </ul>
+                                    </Link>
+                                </li>
+                                <li class="company">
+                                    <Link to="/Company_List" class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                        <div>
+                                            <AiFillHome class="company_icon"></AiFillHome>
+                                            <span >Company</span>
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li class="user_cookies">
+                                    <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                        <div>
+                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                            <span >{user}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="login">
+                                    <div>
+                                        <BsPeopleCircle class="login_icon" onClick={() =>
+                                             this.closeModal("logout")}></BsPeopleCircle>
+                                        <span onClick={() => this.openModal("logout")}>Log out</span>
+                                        <Modal
+                                            visible={this.state.visible_first}
+                                            width="300"
+                                            height="80"
+                                            backgroundColor="red"
+                                            effect="fadeInUp"
+                                        >
+                                            <div class="loginScreen"><Logout parentMethod={() =>
+                                                this.closeModal("logout")}></Logout>
+                                            </div>
+                                        </Modal>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
                 <div class="Viettel_tester_main">
                     <div class="Viettel_tester_main_image">
@@ -133,7 +162,7 @@ class ViettelJob_tester extends Component {
                     <div class="Viettel_tester_main_content">
                         <div class="Viettel_tester_main_content_logo">
                             <div class="Viettel_tester_main_content_logo_icon">
-                                <Link to="/Viettel" class="company_frame">
+                                <Link to={`/company/${this.state.job_detail.id_company}`} class="company_frame">
                                     <img src={this.state.job_detail.logo_company}></img>
                                 </Link>
                             </div>
@@ -142,26 +171,26 @@ class ViettelJob_tester extends Component {
                                     <h1>{this.state.job_detail.name_company}</h1>
                                 </div>
                                 <div class="Viettel_tester_main_content_logo_infor_introduce">
-                                    <ul style={{marginTop:"20px", marginLeft:"5px"}}>
-                                        <li style={{marginTop:"5px"}}>
-                                            <div style={{display:"flex", alignItems:"center"}}>
-                                                <SiGooglemaps class="icon" style={{ color: "blue", marginRight:"20px",fontSize:"20px" }}></SiGooglemaps>
+                                    <ul style={{ marginTop: "20px", marginLeft: "5px" }}>
+                                        <li style={{ marginTop: "5px" }}>
+                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                <SiGooglemaps class="icon" style={{ color: "blue", marginRight: "20px", fontSize: "20px" }}></SiGooglemaps>
                                                 <p >{this.state.job_detail.city}</p>
                                             </div>
                                         </li>
-                                        <li style={{marginTop:"5px"}}>
+                                        <li style={{ marginTop: "5px" }}>
                                             <div class="country_flag">
-                                                <div class="country_flag_icon" style={{ marginTop: "0px", marginLeft: "0px" ,display:'flex', alignItems:"center"}}>
-                                                    <AiFillFlag class="icon" style={{ fontSize: "25px", color: "green",marginRight:"15px" }}></AiFillFlag>
+                                                <div class="country_flag_icon" style={{ marginTop: "0px", marginLeft: "0px", display: 'flex', alignItems: "center" }}>
+                                                    <AiFillFlag class="icon" style={{ fontSize: "25px", color: "green", marginRight: "15px" }}></AiFillFlag>
                                                     <div id="text"><p>{this.state.job_detail.country}</p></div>
 
                                                 </div>
                                             </div>
 
                                         </li >
-                                        <li style={{marginTop:"5px"}}>
-                                            <div style={{display:'flex', alignItems:"center"}}>
-                                                <BiCalendar class="icon" style={{ color: "black", marginRight:"20px", fontSize:"20px" }}></BiCalendar>
+                                        <li style={{ marginTop: "5px" }}>
+                                            <div style={{ display: 'flex', alignItems: "center" }}>
+                                                <BiCalendar class="icon" style={{ color: "black", marginRight: "20px", fontSize: "20px" }}></BiCalendar>
                                                 <p>Monday - Saturday</p>
                                             </div>
                                         </li>
@@ -176,12 +205,12 @@ class ViettelJob_tester extends Component {
                             <div class="Viettel_tester_main_content_title_frame">
                                 <ul>
                                     <li >
-                                        <Link Link to="/job-list-follow-type/" class="company_frame" id="type_frame">
+                                        <Link to={`/job-list-follow-type/${this.state.job_detail.id_job_type}`} class="company_frame" id="type_frame">
                                             <div>{this.state.job_detail.name_job_type}</div>
                                         </Link>
                                     </li>
                                     <li >
-                                        <Link to="/Company_List" class="company_frame" id="job_frame">
+                                        <Link to={`/company/${this.state.job_detail.id_company}`} class="company_frame" id="job_frame">
                                             <div  >{this.state.job_detail.name_company}</div>
                                         </Link>
 
@@ -242,7 +271,50 @@ class ViettelJob_tester extends Component {
 
                     </div>
                 </div>
-            </div>
+                <div class="footer_container">
+                    <div class="footer_search" style={{ marginLeft: "140px" }}>
+                        <div class="footer_search_skill">
+                            <div>Jobs by Skill</div>
+                            <ul >
+                                <li><Link to="/job-list-follow-type/2" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>JavaScript</div></Link></li>
+                                <li><Link to="/job-list-follow-type/1" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Tester</div></Link></li>
+                                <li><Link to="/job-list-follow-type/3" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>C/C++</div></Link></li>
+                                <li><Link to="/job-list-follow-type/5" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>.NET</div></Link></li>
+                                <li><Link to="/job-list-follow-type/6" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>PHP</div></Link></li>
+                                <li><Link to="/job-list-follow-type/4" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Java</div></Link></li>
+
+                            </ul>
+                        </div>
+                        <div class="footer_search_position">
+                            <div>Jobs by Position</div>
+                            <ul >
+                                <li><a><Link to="/job-list-follow-position/1" className='text-link-footer'>Internship</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/5" className='text-link-footer'>Fresher</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/3" className='text-link-footer'>Junior</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/4" className='text-link-footer'>Freelancer</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/2" className='text-link-footer'>Senior</Link></a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_search_company">
+                            <div>Jobs by Company</div>
+                            <ul>
+                                <li><Link to="/company/8" class="link_company">Toshiba Software</Link></li>
+                                <li><Link to="/company/9" class="link_company">VNG Corporation</Link></li>
+                                <li><Link to="/company/2" class="link_company">FPT Software</Link></li>
+                                <li><Link to="/company/7" class="link_company">Sun* Inc</Link></li>
+                                <li><Link to="/company/1" class="link_company">Viettel Group</Link></li>
+                                <li><Link to="/company/3" class="link_company">HyBrid Technology</Link></li>
+                                <li><Link to="/company/4" class="link_company">KMS Technology</Link></li>
+                                <li><Link to="/company/5" class="link_company">LG Việt Nam</Link></li>
+                                <li><Link to="/company/6" class="link_company">Misa Software</Link></li>
+                                <li><Link to="/company/10" class="link_company">VNPT Technology</Link></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div >
         )
     }
 

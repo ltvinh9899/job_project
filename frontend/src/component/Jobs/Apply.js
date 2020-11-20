@@ -94,7 +94,7 @@ class Apply extends Component {
         
         const user = {};
         
-        this.state.id_user = 7;
+        this.state.id_user = 210;
 
         // user.full_name = this.state.full_name;
         // user.id_user = this.state.id_user;

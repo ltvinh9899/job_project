@@ -6,6 +6,7 @@ import { TiTick } from "react-icons/ti"
 import './Login.css';
 import axios from "axios";
 import { BrowserRoute, BrowserRouter, Link, Route } from 'react-router-dom';
+import cookie from 'react-cookies'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +15,7 @@ class Login extends Component {
             user_name: '',
             password: '',
             messages: [],
-            color: '',
+
 
         }
     }
@@ -39,7 +40,20 @@ class Login extends Component {
 
 
     }
-    child_log_closeModal() {
+    setCookie(name, value) {
+        document.cookie = name + "=" + (value || "") + "; path=/";
+    }
+    getCookie1(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    child_log_closeModal = () => {
         this.props.parent_close();
         document.getElementsByClassName('log')[0].value = ""
         document.getElementsByClassName('log')[1].value = ""
@@ -106,45 +120,66 @@ class Login extends Component {
         })
             .then(res => {
                 const messages = res.data;
+                console.log(messages)
                 this.setState({ messages });
             }).catch((error) => {
                 console.log(error)
             });
     }
+    a = () => {
+        if (document.getElementsByClassName("log")[0] != "")
+            window.location = "/Welcome";
+        global.value00000 = "ric";
+    }
 
     render() {
         if (this.state.messages.success === true) {
-            return (
-                <Redirect to="/Welcome"></Redirect>
-            )
+     
+                cookie.save("user_name", document.getElementsByClassName("log")[0].value, { path: "/" })
+                window.location = "/Welcome"
+ 
         }
         return (
             <div class="login-page_login">
                 <div class="form_login">
-                    <form class="login-form_login" onSubmit={this.handleLogin}>
+                    <form class="login-form_login" onSubmit={this.handleLogin} >
                         <input type="text" placeholder="Enter username" name="user_name" onChange={this.handleUserNameChange} class="log" />
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error">
 
                         </div>
                         <input type="password" placeholder="Enter password" name="password" onChange={this.handlePasswordChange} class="log" />
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error">
-
                         </div>
                         <button id="login_button" onClick={() => {
+                            /* // if (this.state.messages.success !== true) {
+                            //     const element = <p style={{ color: "red" }}>Tài khoản không tồn tại</p>
+                            //     ReactDOM.render(element, document.getElementById("message_login"));
+                            // }
+                            // else {
+                            // this.setCookie("user_email",document.getElementsByClassName("log")[0].value,30); //set "user_email" cookie, expires in 30 days
+                            //  var userEmail=this.getCookie1("user_email");//"bobthegreat@gmail.com"
+                           // if (this.state.messages.success !== true) {
+                                  this.setCookie("user_email", document.getElementsByClassName("log")[0].value, 30); //set "user_email" cookie, expires in 30 days
+                                var userEmail = this.getCookie1("user_email");//"bobthegreat@gmail.com"
+                                global.value=userEmail;
+                                alert(userEmail); 
+                               window.location="/Welcome" 
+                               global.value="ric";          
+                          //  } */
                             if (this.state.messages.success !== true) {
-                                const element = <p style={{ color: "red" }}>Tài khoản không tồn tại</p>
+                            const element = <p style={{ color: "red" }}>{this.state.messages.message}</p>
                                 ReactDOM.render(element, document.getElementById("message_login"));
                             }
-
-
-                        }}>Oke</button>
+                           
+                        }}
+                        >Oke</button>
                         <div id="message_login" style={{ fontSize: "15px" }}></div>
                         <p class="message_login" >Not registered? <a onClick={() => this.move_to_SignUp()}>Create an account</a></p>
                         <div id="confirm_login"></div>
 
                     </form>
                 </div>
-            </div>
+            </div >
         )
     }
 }

@@ -112,15 +112,18 @@ body{
 .list_main_company{
     background-color: white;
     width: 1200px;
-    height: 6000px;
+    height: auto;
     margin-left: 200px;
     margin-top: 50px;
+    
 }
 .list_main_company ul{
     list-style: none;
     padding: 0;
     box-sizing: border-box;
     padding-top: 10px;
+    padding-bottom: 10px;
+   
 }
 .list_main_company ul li{
     margin: 20px 40px;

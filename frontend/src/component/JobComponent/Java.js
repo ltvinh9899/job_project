@@ -14,15 +14,20 @@ import Logout from '../Logout'
 import Modal from 'react-awesome-modal'
 import "./Java.css"
 import axios from "axios";
-
+import cookie from 'react-cookies'
+import { FaUserSecret } from "react-icons/fa"
+let user;
 class Java extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
             currentComponent: 'A',
-            java_jobs: []
+            java_jobs: [],
+            type_job: [],
         }
+        user = cookie.load("user_name")
+
     }
 
     componentDidMount() {
@@ -32,6 +37,17 @@ class Java extends Component {
             const java_jobs = res.data;
             this.setState({ java_jobs });
             console.log(java_jobs);
+        })
+            .catch(error => {
+                // handle error
+                console.log(error);
+            })
+
+        axios.get(`http://127.0.0.1:8000/job-type/${id_job_type}/`).then(res => {
+            // handle success
+            const type_job = res.data;
+            this.setState({ type_job });
+            console.log(type_job);
         })
             .catch(error => {
                 // handle error
@@ -78,6 +94,14 @@ class Java extends Component {
                                     </div>
                                 </Link>
                             </li>
+                            <li class="user_cookies">
+                                <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                    <div>
+                                        <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                        <span >{user}</span>
+                                    </div>
+                                </div>
+                            </li>
                             <li class="login">
                                 <div>
                                     <BsPeopleCircle class="login_icon" onClick={() => this.openModal()}></BsPeopleCircle>
@@ -111,7 +135,7 @@ class Java extends Component {
                 <div class="main_container_java">
 
                     <div class="numberJob">
-                        <span>Job</span>
+                    <span>{this.state.type_job.name_job_type}</span>
                     </div>
                     <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px" }}>
                         {this.state.java_jobs.map(java_job => {
@@ -168,6 +192,48 @@ class Java extends Component {
                         })}
                     </ul>
 
+                </div>
+                <div class="footer_container">
+                    <div class="footer_search" style={{ marginLeft: "140px", marginTop:"-50px" }}>
+                        <div class="footer_search_skill">
+                            <div>Jobs by Skill</div>
+                            <ul >
+                                <li><Link to="/job-list-follow-type/2" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>JavaScript</div></Link></li>
+                                <li><Link to="/job-list-follow-type/1" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Tester</div></Link></li>
+                                <li><Link to="/job-list-follow-type/3" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>C/C++</div></Link></li>
+                                <li><Link to="/job-list-follow-type/5" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>.NET</div></Link></li>
+                                <li><Link to="/job-list-follow-type/6" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>PHP</div></Link></li>
+                                <li><Link to="/job-list-follow-type/4" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Java</div></Link></li>
+
+                            </ul>
+                        </div>
+                        <div class="footer_search_position">
+                            <div>Jobs by Position</div>
+                            <ul >
+                                <li><a><Link to="/job-list-follow-position/1" className='text-link-footer'>Internship</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/5" className='text-link-footer'>Fresher</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/3" className='text-link-footer'>Junior</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/4" className='text-link-footer'>Freelancer</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/2" className='text-link-footer'>Senior</Link></a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_search_company">
+                            <div>Jobs by Company</div>
+                            <ul >
+                                <li><Link to="/company/8" class="link_company">Toshiba Software</Link></li>
+                                <li><Link to="/company/9" class="link_company">VNG Corporation</Link></li>
+                                <li><Link to="/company/2" class="link_company">FPT Software</Link></li>
+                                <li><Link to="/company/7" class="link_company">Sun* Inc</Link></li>
+                                <li><Link to="/company/1" class="link_company">Viettel Group</Link></li>
+                                <li><Link to="/company/3" class="link_company">HyBrid Technology</Link></li>
+                                <li><Link to="/company/4" class="link_company">KMS Technology</Link></li>
+                                <li><Link to="/company/5" class="link_company">LG Việt Nam</Link></li>
+                                <li><Link to="/company/6" class="link_company">Misa Software</Link></li>
+                                <li><Link to="/company/10" class="link_company">VNPT Technology</Link></li>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

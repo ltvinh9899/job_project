@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.authtoken.models import Token
-from .serializers import JobSerializer, CompanyInfoSerializer, AccountUserSerializer, ProfileUserSerializer
-from .models import Job, company_info, profile_user, account_user
+from .serializers import JobSerializer, CompanyInfoSerializer, AccountUserSerializer, ProfileUserSerializer, JobTypeSerializer, LocationSerializer
+from .models import Job, company_info, profile_user, account_user, job_type, location
 
 # Create your views here.
 
@@ -75,6 +75,17 @@ def  jobDetail(request, id_job):
     serializer = JobSerializer(jobs, many=False)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def  jobType(request, id_job_type):
+    jobs_type = job_type.objects.get(id=id_job_type)
+    serializer = JobTypeSerializer(jobs_type, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def  jobPosition(request, id_job_position):
+    jobs_position = location.objects.get(id=id_job_position)
+    serializer = LocationSerializer(jobs_position, many=False)
+    return Response(serializer.data)
 
 class SignUserAccountAPI(APIView):
 
@@ -110,8 +121,10 @@ class LoginApi(APIView):
 
                 user_password = [user.password for user in users]
 
+
                 if user_serializer.data['password'] in user_password:
-                    return Response({"success": True,'message': "Thành công"})
+                    user_id = [user.id for user in users]
+                    return Response({"user_id": user_id[0] ,"success": True,'message': "Thành công"})
                 else:
                     return Response({"success": False,'message': "Mật khẩu không đúng"})
 

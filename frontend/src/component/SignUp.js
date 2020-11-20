@@ -173,22 +173,23 @@ class SignUp extends Component {
                 console.log(error)
             });
 
-           
+
     }
 
-     redirectLogin = () => {
-       window.location="/"
+    redirectLogin = () => {
+        window.location = "/"
     }
     confirmLogin() {
-         const notifyLogin = <div style={{ marginTop: "30px" }}>
+        const notifyLogin = <div style={{ marginTop: "20px" }}>
             <span style={{ color: "green", fontSize: "15px", marginLeft: "0px" }}>Đăng kí thành công!</span>
-            <span   onClick={ ()=> this.redirectLogin()} style={{color:"brown"}}>Đăng nhập</span>
+            <span onClick={() => this.redirectLogin()} style={{ color: "brown" }}>Đăng nhập</span>
         </div>
-        ReactDOM.render(notifyLogin, document.getElementById("message_signup")) 
+        ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
     }
 
 
     render() {
+        const password_length = 6;
         var email = document.getElementById('email');
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         return (
@@ -200,7 +201,8 @@ class SignUp extends Component {
                     <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error_sign"></div>
                     <input type="password" placeholder="Enter password" name="password" onChange={this.handlePasswordChange} class="log_sign" />
                     <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error_sign"></div>
-                    <button class="login_button"   onClick={(event) => {
+                    <button class="login_button" onClick={(event) => {
+
                         if (document.getElementsByClassName('log_sign')[1].value != "" && !filter.test(email.value)) {
                             const element = <div>
                                 <img class="multiply_icons" src={multiply}></img>
@@ -209,19 +211,29 @@ class SignUp extends Component {
                             ReactDOM.render(element, document.getElementsByClassName('log_error_sign')[1]);
                         }
                         else {
-                            if (document.getElementsByClassName('log_sign')[0].value != "" && document.getElementsByClassName('log_sign')[1].value != "" && document.getElementsByClassName('log_sign')[2].value != "") {
-                                this.handleSignUp(event)
-                                 setTimeout(() => this.confirmLogin(),500)//hàm setTimeout nhận tham số là 1 callback func
+                            if (document.getElementsByClassName('log_sign')[2].value != "" && document.getElementsByClassName('log_sign')[2].value.length <= password_length) {
+                                const element = <div>
+                                    <img class="multiply_icons" src={multiply}></img>
+                                    <p style={{ marginTop: "-25px", marginLeft: "180px", fontWeight: 500 }}>Must be at least 8 characters</p>
+                                </div>;
+                                ReactDOM.render(element, document.getElementsByClassName('log_error_sign')[2]);
                             }
                             else {
-                                this.check_form_log();
+                                if (document.getElementsByClassName('log_sign')[0].value != "" && document.getElementsByClassName('log_sign')[1].value != "" && document.getElementsByClassName('log_sign')[2].value != "") {
+                                    this.handleSignUp(event)
+                                    setTimeout(() => this.confirmLogin(), 500)//hàm setTimeout nhận tham số là 1 callback func
+                                }
+                                else {
+                                    this.check_form_log();
+                                }
                             }
                         }
                     }
-                    }  
-                  
+                    }
+
                     >Sign Up</button>
-                    <div id="message_signup" style={{ marginTop: "10px" }}></div>
+                      <p class="message_login" style={{color:"#a0a0a0", fontSize:"15px", marginTop:"25px"}} >Already to registered?</p>
+                    <div id="message_signup" ></div>
                 </div>
             </div>
         )

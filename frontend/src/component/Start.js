@@ -62,9 +62,7 @@ class Start extends Component {
             <div id="container" onLoad={() => {
               var do_alert = setTimeout(
                 this.openModal("login"),3);
-              function clearAlert() {
-                clearTimeout(do_alert);
-              }
+             
             }}>
               <div class="header_container">
                 <div class="header">
@@ -115,7 +113,7 @@ class Start extends Component {
                           <Modal
                             visible={this.state.visible_second}
                             width="400"
-                            height="460"
+                            height="470"
                             backgroundColor="red"
                             effect="fadeInUp"
                           >
