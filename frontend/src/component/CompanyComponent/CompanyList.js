@@ -26,6 +26,7 @@ class CompanyList extends Component {
             visible: false,
             currentComponent: 'A',
             companies: [],
+            searching_text: '',
         }
         user = cookie.load("user_name")
 
@@ -56,6 +57,56 @@ class CompanyList extends Component {
             visible: false
         });
     }
+
+    getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    handleSearching = event => {
+        this.setState({
+            searching_text: event.target.value
+
+        });
+    }
+
+    handleSearchingClick = event => {
+        event.preventDefault();
+
+        var csrftoken = this.getCookie('csrftoken')
+
+        const searching = {};
+    
+        searching.searching_text = this.state.searching_text;
+       
+
+        axios.post('http://127.0.0.1:8000/company-list-follow-searching/', searching, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            }
+        })
+            .then(res => {
+                const companies = res.data;
+                console.log(companies)
+                this.setState({ companies });
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+
 
     render() {
         return (
@@ -115,7 +166,7 @@ class CompanyList extends Component {
                         </div>
                     </div>
                     <div class="header_search">
-                        <input type="text" style={{ paddingLeft: "40px" }} placeholder="Key word for finding job" id="search_input_text" onkeyup="search_animal()" onKeyDown={(event) => {
+                        <input type="text" style={{ paddingLeft: "40px" }} name="searching_text" onChange={this.handleSearching} placeholder="Key word for finding job" id="search_input_text" onkeyup="search_animal()" onKeyDown={(event) => {
                             if (event.key == "Enter") {
                                 this.setState({
                                     key_value: document.getElementById("search_input_text").value,
@@ -124,12 +175,7 @@ class CompanyList extends Component {
                         }
                         }></input>
                         <div class="search_icon"><BsSearch></BsSearch></div>
-                        <div class="search_button" onClick={() => {
-                            this.setState({
-                                key_value: document.getElementById("search_input_text").value,
-                            })
-                        }
-                        }>
+                        <div class="search_button" onClick={this.handleSearchingClick}>
                             <span >Search</span>
                         </div>
                     </div>
