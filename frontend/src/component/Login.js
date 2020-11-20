@@ -172,7 +172,7 @@ class Login extends Component {
                             }
                            
                         }}
-                        >Oke</button>
+                        >Okee</button>
                         <div id="message_login" style={{ fontSize: "15px" }}></div>
                         <p class="message_login" >Not registered? <a onClick={() => this.move_to_SignUp()}>Create an account</a></p>
                         <div id="confirm_login"></div>
