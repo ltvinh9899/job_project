@@ -2,7 +2,7 @@ import React from 'react';
 import Modals from './component/Modal'
 import Login from './component/Login'
 import Java from './component/JobComponent/Java'
-import JobType from './component/JobComponent/JobType'
+
 
 import Welcome from './component/Welcome';
 import Start from './component/Start';
@@ -29,11 +29,12 @@ import First from './component/binComponent/first'
 import Second from './component/binComponent/second'
 import Container from './component/binComponent/container'
 import Job_list from './component/JobComponent/Job_list'
+import Job_follow_position from './component/JobComponent/Job_follow_position'
 
 class App extends Component {
     render() {
-        return (
-             <BrowserRouter>
+         return (
+              <BrowserRouter>
                 <Route path="/" component={Start} exact />
                 <Route path="/java" component={Java} exact />
                 <Route path="/Company_List" component={CompanyList} exact />
@@ -52,16 +53,16 @@ class App extends Component {
                 <Route path="/company/:id" component={FPT}/>
                 <Route path="/job-detail/:id" component={ViettelJob_tester}/>
                 <Route path="/job-list-follow-type/:id" component={Java}/>
-                <Route path="/job-positive/:id" component={JobType}/>
                 <Route path="/job-list" component={Job_list}/>
+                <Route path="/job-list-follow-position/:id" component={Job_follow_position}/>
                 <Route path="/Welcome" component={Welcome}/>  
                 <Route path="/Login" component={Login}/>  
-            </BrowserRouter> 
+            </BrowserRouter>  )
+         
+         /* return(
+             <Container></Container>
+         ) */
         
-          //  <Container></Container>
-        )
-
-
     }
 }
 

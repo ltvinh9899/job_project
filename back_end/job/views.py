@@ -44,6 +44,13 @@ def jobListFollowType(request, id_job_type):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def jobListFollowPosition(request, id_position):
+
+    jobs = Job.objects.filter(id_location=id_position)
+    serializer = JobSerializer(jobs, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def jobListFollowCompany(request, id_company):
 
     jobs = Job.objects.filter(id_company=id_company)
