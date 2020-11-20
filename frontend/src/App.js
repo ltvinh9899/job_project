@@ -2,7 +2,10 @@ import React from 'react';
 import Modals from './component/Modal'
 import Login from './component/Login'
 import Java from './component/JobComponent/Java'
+
+
 import Welcome from './component/Welcome';
+import Start from './component/Start';
 import logo from './logo.svg';
 import './App.css';
 import CompanyList from './component/CompanyComponent/CompanyList'
@@ -21,20 +24,18 @@ import Logout from './component/Logout'
 import ViettelJob_tester from './component/Jobs/ViettelJob/ViettelJob_tester'
 import Apply from './component/Jobs/Apply'
 import { Component } from 'react';
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 import First from './component/binComponent/first'
 import Second from './component/binComponent/second'
-
 import Container from './component/binComponent/container'
-
 import Job_list from './component/JobComponent/Job_list'
 import Job_follow_position from './component/JobComponent/Job_follow_position'
 
 class App extends Component {
     render() {
-           return (
-            <BrowserRouter>
-                <Route path="/" component={Welcome} exact />
+         return (
+              <BrowserRouter>
+                <Route path="/" component={Start} exact />
                 <Route path="/java" component={Java} exact />
                 <Route path="/Company_List" component={CompanyList} exact />
                 <Route path="/Viettel_tester" component={ViettelJob_tester} exact />
@@ -54,10 +55,14 @@ class App extends Component {
                 <Route path="/job-list-follow-type/:id" component={Java}/>
                 <Route path="/job-list" component={Job_list}/>
                 <Route path="/job-list-follow-position/:id" component={Job_follow_position}/>
-            </BrowserRouter>
-        )   
-       
-      
+                <Route path="/Welcome" component={Welcome}/>  
+                <Route path="/Login" component={Login}/>  
+            </BrowserRouter>  )
+         
+         /* return(
+             <Container></Container>
+         ) */
+        
     }
 }
 

@@ -110,13 +110,28 @@
      padding: 0;
  }
  .Viettel_tester_main_content_title_frame ul li{
-     margin-left: 30px;
-     border: 1px solid black;
-     width: 60px;
+     margin-left: 30px; 
      text-align: center;
      text-decoration: none;
-     color:black
+     color:black;
  }
+ .Viettel_tester_main_content_title_frame ul li #type_frame{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid black;
+    width: 80px;
+    height: 40px;
+}
+.Viettel_tester_main_content_title_frame ul li #job_frame{
+    border: 1px solid black;
+    width: 125px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   
+}
  .company_frame{
     color: black;
     text-decoration: none;

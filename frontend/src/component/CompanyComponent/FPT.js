@@ -9,6 +9,7 @@ import Viettel_content from "./image/Viettel_content.png"
 
 
 import { AiFillHome } from "react-icons/ai"
+import { AiFillFlag } from "react-icons/ai"
 import { BsPeopleFill } from "react-icons/bs"
 import { BsPeopleCircle } from "react-icons/bs"
 import { BsSearch } from "react-icons/bs"
@@ -26,7 +27,9 @@ import Modal from 'react-awesome-modal'
 import { BrowserRoute, BrowserRouter, Link, Route } from 'react-router-dom';
 import "./Viettel.css"
 import axios from "axios";
-
+import cookie from 'react-cookies'
+import { FaUserSecret } from "react-icons/fa"
+let user;
 class FPT extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +39,8 @@ class FPT extends Component {
             company_detail: [],
             jobs_list: []
         }
+        user = cookie.load("user_name")
+
     }
 
     componentDidMount() {
@@ -81,7 +86,7 @@ class FPT extends Component {
             <div class="viettel_container">
                 <div class="header_company_list">
                     <div class="header_company_left">
-                        <img src={Logo} />
+                        <Link to="/Welcome"><img src={Logo} /></Link>
                         <span>IT JOB FOR EVERYONE</span>
                     </div>
                     <div class="header_company_right">
@@ -101,6 +106,14 @@ class FPT extends Component {
                                         <span >Company</span>
                                     </div>
                                 </Link>
+                            </li>
+                            <li class="user_cookies">
+                                <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                    <div>
+                                        <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                        <span >{user}</span>
+                                    </div>
+                                </div>
                             </li>
                             <li class="login">
                                 <div>
@@ -134,23 +147,19 @@ class FPT extends Component {
                                 <img src={this.state.company_detail.logo_company} />
                             </div>
                             <div class="Viettel_company_name">
-                                <p>FPT software</p>
+                                <p >{this.state.company_detail.name_company}</p>
                                 <div class="Viettel_company_icon">
                                     <ul>
                                         <li>
                                             <div>
-                                                <SiGooglemaps class="icon"></SiGooglemaps>
-                                                <p>{this.state.company_detail.city}</p>
+                                                <SiGooglemaps class="icon" style={{ color: "blue" }}></SiGooglemaps>
+                                                <p>{this.state.company_detail.address},{this.state.company_detail.city}</p>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="country_flag">
-                                                <div>
-                                                    <AiFillSetting class="icon"></AiFillSetting>
-                                                    <p>Outsourcing</p>
-                                                </div>
-                                                <div class="country_flag_icon">
-                                                    <div id="icon"><img src={country} /></div>
+                                                <div class="country_flag_icon" style={{ marginTop: "0px", marginLeft: "0px" }}>
+                                                    <AiFillFlag class="icon" style={{ fontSize: "25px", color: "green" }}></AiFillFlag>
                                                     <div id="text"><p>{this.state.company_detail.country}</p></div>
 
                                                 </div>
@@ -160,7 +169,7 @@ class FPT extends Component {
                                         <li>
 
                                             <div>
-                                                <BiCalendar class="icon"></BiCalendar>
+                                                <BiCalendar class="icon" style={{ color: "black" }}></BiCalendar>
                                                 <p>Monday - Saturday</p>
                                             </div>
                                         </li>
@@ -170,8 +179,8 @@ class FPT extends Component {
                             </div>
                         </div>
                     </div>
-                    <div class="Viettel_company_main_content_intro">
-                        <p>Giới thiệu về {this.state.company_detail.name_company}</p>
+                    <div class="Viettel_company_main_content_intro" >
+                        <p style={{ paddingTop: "40px" }}>Giới thiệu về {this.state.company_detail.name_company}</p>
                         <div class="content" id="first_content">
                             {this.state.company_detail.description_company}
                         </div>
@@ -179,7 +188,7 @@ class FPT extends Component {
                     </div>
                     <div class="Viettel_company_main_content_choice">
                         <div class="Job_title">Jobs</div>
-                        <ul style={{listStyle:"none", marginLeft:"-40px", paddingBottom:"20px"}}>
+                        <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px" }}>
                             {this.state.jobs_list.map(job => {
                                 return (
                                     <Link to={`/job-detail/${job.id}`} class="Viettel_link">
@@ -190,7 +199,7 @@ class FPT extends Component {
                                                         <div class="logoCompany">
                                                             <div><img src={job.logo_company} /></div>
                                                         </div>
-                                                        <div class="contentJob"  style={{ marginLeft:"30px", marginTop:"60px"}}>
+                                                        <div class="contentJob" style={{ marginLeft: "30px", marginTop: "60px" }}>
                                                             <div class="nameJob">{job.name}</div>
                                                             <div class="salaryJob">
                                                                 <div class="iconJob"><AiOutlineDollarCircle></AiOutlineDollarCircle></div>
@@ -202,7 +211,7 @@ class FPT extends Component {
                                                                 {/* {job.description} */}
                                                             </div>
                                                         </div>
-                                                        <div class="PlaceJob" style={{marginTop:"10px", marginRight:"20px", width:"540px"}}>
+                                                        <div class="PlaceJob" style={{ marginTop: "10px", marginRight: "20px", width: "540px" }}>
                                                             <div class="city">
                                                                 <div class="icon">
                                                                     <FaCity ></FaCity>
@@ -232,6 +241,48 @@ class FPT extends Component {
                                 );
                             })}
                         </ul>
+                    </div>
+                </div>
+                <div class="footer_container">
+                    <div class="footer_search" style={{marginLeft:"140px"}}>
+                        <div class="footer_search_skill">
+                            <div>Jobs by Skill</div>
+                            <ul>
+                                <li><Link to="/job-list-follow-type/2" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>JavaScript</div></Link></li>
+                                <li><Link to="/job-list-follow-type/1" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Tester</div></Link></li>
+                                <li><Link to="/job-list-follow-type/3" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>C/C++</div></Link></li>
+                                <li><Link to="/job-list-follow-type/5" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>.NET</div></Link></li>
+                                <li><Link to="/job-list-follow-type/6" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>PHP</div></Link></li>
+                                <li><Link to="/job-list-follow-type/4" style={{ textDecoration: "none", color: "white" }}><div style={{ fontSize: "18px" }}>Java</div></Link></li>
+
+                            </ul>
+                        </div>
+                        <div class="footer_search_position">
+                            <div>Jobs by Position</div>
+                            <ul>
+                                <li><a><Link to="/job-list-follow-position/1" className='text-link-footer'>Internship</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/5" className='text-link-footer'>Fresher</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/3" className='text-link-footer'>Junior</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/4" className='text-link-footer'>Freelancer</Link></a></li>
+                                <li><a><Link to="/job-list-follow-position/2" className='text-link-footer'>Senior</Link></a></li>
+                            </ul>
+                        </div>
+                        <div class="footer_search_company">
+                            <div>Jobs by Company</div>
+                            <ul>
+                                <li><Link to="/company/8" class="link_company">Toshiba Software</Link></li>
+                                <li><Link to="/company/9" class="link_company">VNG Corporation</Link></li>
+                                <li><Link to="/company/2" class="link_company">FPT Software</Link></li>
+                                <li><Link to="/company/7" class="link_company">Sun* Inc</Link></li>
+                                <li><Link to="/company/1" class="link_company">Viettel Group</Link></li>
+                                <li><Link to="/company/3" class="link_company">HyBrid Technology</Link></li>
+                                <li><Link to="/company/4" class="link_company">KMS Technology</Link></li>
+                                <li><Link to="/company/5" class="link_company">LG Việt Nam</Link></li>
+                                <li><Link to="/company/6" class="link_company">Misa Software</Link></li>
+                                <li><Link to="/company/10" class="link_company">VNPT Technology</Link></li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

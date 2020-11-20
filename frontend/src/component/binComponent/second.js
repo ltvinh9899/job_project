@@ -1,21 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
-
 class Second extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount(){}
+    constructor(props) {
+        super(props);
+    }
   render() {
-    console.log("propsSecond:", this.props);
     return (
-      <div>
-        <h1> Home Page</h1>
-        <Link to="/back" onClick={() => {this.props.history.goBack()}}>
-          Back
-        </Link>
-            
-      </div>
+     <div>
+       <div id="message_login" style={{fontSize:"15px"}}>{global.value}</div>
+     </div>
     );
   }
 }

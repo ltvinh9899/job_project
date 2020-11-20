@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import multiply from "./image/multiply.png";
 import ReactDOM from 'react-dom';
-
+import { Redirect } from "react-router"
+import { TiTick } from "react-icons/ti"
 import './Login.css';
 import axios from "axios";
-
+import { BrowserRoute, BrowserRouter, Link, Route } from 'react-router-dom';
+import cookie from 'react-cookies'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -13,15 +15,10 @@ class Login extends Component {
             user_name: '',
             password: '',
             messages: [],
+
+
         }
     }
-
-
-    componentDidMount() {
-        
-
-    }
-
     move_to_SignUp() {
         this.props.parent_open()
     }
@@ -43,7 +40,20 @@ class Login extends Component {
 
 
     }
-    child_log_closeModal(){
+    setCookie(name, value) {
+        document.cookie = name + "=" + (value || "") + "; path=/";
+    }
+    getCookie1(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+    child_log_closeModal = () => {
         this.props.parent_close();
         document.getElementsByClassName('log')[0].value = ""
         document.getElementsByClassName('log')[1].value = ""
@@ -55,7 +65,6 @@ class Login extends Component {
     handleUserNameChange = event => {
         this.setState({
             user_name: event.target.value
-
         });
     }
 
@@ -68,7 +77,6 @@ class Login extends Component {
 
     handlePasswordChange = event => {
         this.setState({
-
             password: event.target.value
 
         });
@@ -80,7 +88,7 @@ class Login extends Component {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
                 var cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
+
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
@@ -92,17 +100,14 @@ class Login extends Component {
 
     handleLogin = event => {
         event.preventDefault();
-        
+
         var csrftoken = this.getCookie('csrftoken')
-        
+
         const user = {};
         this.state.user_email = "none";
         user.user_name = this.state.user_name;
         user.user_email = this.state.user_email;
         user.password = this.state.password;
-        // user.append('user_name', this.state.user_name);
-        // user.append('user_email', this.state.user_email);
-        // user.append('password', this.state.password);
 
         console.log(user);
 
@@ -110,82 +115,73 @@ class Login extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
-                'X-CSRFToken':csrftoken,
+                'X-CSRFToken': csrftoken,
             }
         })
             .then(res => {
                 const messages = res.data;
-                console.log(messages);
+                console.log(messages)
                 this.setState({ messages });
-                console.log(res.data);
             }).catch((error) => {
                 console.log(error)
             });
-        
-        // axios.get('http://127.0.0.1:8000/user-login/').then(res => {
-        //     // handle success
-        //     const message = res.data;
-        //     this.setState({ message });
-        //     console.log(message);
-        // })
-        //     .catch(error => {
-        //         // handle error
-        //         console.log(error);
-        //     })
-
+    }
+    a = () => {
+        if (document.getElementsByClassName("log")[0] != "")
+            window.location = "/Welcome";
+        global.value00000 = "ric";
     }
 
     render() {
-        // let { message } = this.state;
+        if (this.state.messages.success === true) {
+     
+                cookie.save("user_name", document.getElementsByClassName("log")[0].value, { path: "/" })
+                window.location = "/Welcome"
+ 
+        }
         return (
             <div class="login-page_login">
                 <div class="form_login">
-                    <form class="login-form_login" onSubmit={this.handleLogin}>
-                        <input type="text" placeholder="Enter username" name="user_name" onChange={this.handleUserNameChange} class="log"  />
+                    <form class="login-form_login" onSubmit={this.handleLogin} >
+                        <input type="text" placeholder="Enter username" name="user_name" onChange={this.handleUserNameChange} class="log" />
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error">
 
                         </div>
                         <input type="password" placeholder="Enter password" name="password" onChange={this.handlePasswordChange} class="log" />
                         <div style={{ color: "red", marginLeft: "-210px", fontSize: "15px" }} class="log_error">
-
                         </div>
-                        <button class="login_button"  onClick={() => {
-                            if(this.state.messages.success == true){
-                                this.child_log_closeModal()
+                        <button id="login_button" onClick={() => {
+                            /* // if (this.state.messages.success !== true) {
+                            //     const element = <p style={{ color: "red" }}>Tài khoản không tồn tại</p>
+                            //     ReactDOM.render(element, document.getElementById("message_login"));
+                            // }
+                            // else {
+                            // this.setCookie("user_email",document.getElementsByClassName("log")[0].value,30); //set "user_email" cookie, expires in 30 days
+                            //  var userEmail=this.getCookie1("user_email");//"bobthegreat@gmail.com"
+                           // if (this.state.messages.success !== true) {
+                                  this.setCookie("user_email", document.getElementsByClassName("log")[0].value, 30); //set "user_email" cookie, expires in 30 days
+                                var userEmail = this.getCookie1("user_email");//"bobthegreat@gmail.com"
+                                global.value=userEmail;
+                                alert(userEmail); 
+                               window.location="/Welcome" 
+                               global.value="ric";          
+                          //  } */
+                            if (this.state.messages.success !== true) {
+                            const element = <p style={{ color: "red" }}>{this.state.messages.message}</p>
+                                ReactDOM.render(element, document.getElementById("message_login"));
                             }
-                            if (document.getElementsByClassName('log')[0].value == "" && document.getElementsByClassName('log')[1].value == "") {
-                                this.check_form_log();
-                            }
-                          
-                            
-                        }}>login</button>
-                        <p class="message_login" style={{color:"red"}}>{this.state.messages.message}</p>
-                        {/* <p class="message_login">Hello</p> */}
-                        {/* <p>{this.state.messages.message}</p>
-                        {() => {
-                            if (this.state.messages == "Thành công") {
-                                return (
-                                    <p class="message_login">Thành công</p>
-                                )
-                            }
-                            else {
-                                return (
-                                    <p class="message_login">Thất bại</p>
-                                )
-                            }
-                            
-                        }
-
-                        } */}
-                        
+                           
+                        }}
+                        >Oke</button>
+                        <div id="message_login" style={{ fontSize: "15px" }}></div>
                         <p class="message_login" >Not registered? <a onClick={() => this.move_to_SignUp()}>Create an account</a></p>
-                        
-                        
+                        <div id="confirm_login"></div>
+
                     </form>
                 </div>
-            </div>
+            </div >
         )
     }
 }
 
-export default Login;
+export default Login; 

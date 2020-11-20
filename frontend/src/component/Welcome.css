@@ -300,6 +300,7 @@ img{
     list-style: none;
     padding: 0;
     font-size: 15px;
+    margin-left: 10px;
 }
 .footer_search_skill ul li{
     margin-top: 10px;
@@ -316,7 +317,8 @@ img{
 .footer_search_position ul{
     list-style: none;
     padding: 0;
-    font-size: 15px;
+    font-size: 18px;
+    margin-left: 40px;
 }
 .footer_search_position ul li{
     margin-top: 10px;
@@ -334,7 +336,9 @@ img{
 .footer_search_company ul{
     list-style: none;
     padding: 0;
-    font-size: 15px;
+    font-size: 18px;
+    margin-left: 30px;
+
 }
 .footer_search_company ul li{
     margin-top: 10px;
