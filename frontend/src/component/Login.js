@@ -109,7 +109,7 @@ class Login extends Component {
         user.user_email = this.state.user_email;
         user.password = this.state.password;
 
-        console.log(user);
+        // console.log(user);
 
         axios.post('http://127.0.0.1:8000/user-login/', user, {
             headers: {

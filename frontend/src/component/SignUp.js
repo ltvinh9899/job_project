@@ -129,7 +129,7 @@ class SignUp extends Component {
         user.user_email = this.state.user_email
         user.password = this.state.password
 
-        console.log(user);
+        // console.log(user);
 
         axios.post('http://127.0.0.1:8000/user-create/', user, {
             headers: {
@@ -146,45 +146,33 @@ class SignUp extends Component {
                 console.log(error)
             });
     }
-    handleLogin = event => {
-        event.preventDefault();
-
-        var csrftoken = this.getCookie('csrftoken')
-
-        const user = {};
-        this.state.user_email = "none";
-        user.user_name = this.state.user_name;
-        user.user_email = this.state.user_email;
-        user.password = this.state.password;
-
-        console.log(user);
-
-        axios.post('http://127.0.0.1:8000/user-login/', user, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json',
-                'X-CSRFToken': csrftoken,
-            }
-        })
-            .then(res => {
-                const messages = res.data;
-                this.setState({ messages });
-            }).catch((error) => {
-                console.log(error)
-            });
-
-
-    }
-
+    
     redirectLogin = () => {
         window.location = "/"
     }
-    confirmLogin() {
-        const notifyLogin = <div style={{ marginTop: "20px" }}>
-            <span style={{ color: "green", fontSize: "15px", marginLeft: "0px" }}>Đăng kí thành công!</span>
+    confirmLogin = success_checking => {
+        if (success_checking == true) {
+            
+            const notifyLogin = <div style={{ marginTop: "20px" }}>
+            <span style={{ color: "green", fontSize: "15px", marginLeft: "0px" }}>{this.state.messages.message}</span>
             <span onClick={() => this.redirectLogin()} style={{ color: "brown" }}>Đăng nhập</span>
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
+
+        }
+        
+        else {
+
+            const notifyLogin = <div style={{ marginTop: "20px" }}>
+            <span style={{ color: "red", fontSize: "15px", marginLeft: "0px" }}>{this.state.messages.message}</span>
+            <span onClick={() => this.redirectLogin()} style={{ color: "green" }}>Đăng nhập</span>
+        </div>
+        ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
+
+        }
+            
+         
+        
     }
 
 
@@ -221,9 +209,12 @@ class SignUp extends Component {
                             else {
                                 if (document.getElementsByClassName('log_sign')[0].value != "" && document.getElementsByClassName('log_sign')[1].value != "" && document.getElementsByClassName('log_sign')[2].value != "") {
                                     this.handleSignUp(event)
-                                    setTimeout(() => this.confirmLogin(), 500)//hàm setTimeout nhận tham số là 1 callback func
+                                    
+                                    setTimeout(() => this.confirmLogin(this.state.messages.success), 500)//hàm setTimeout nhận tham số là 1 callback func
                                 }
                                 else {
+                                        
+
                                     this.check_form_log();
                                 }
                             }
