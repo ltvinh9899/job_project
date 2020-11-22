@@ -23,7 +23,8 @@ class Java extends Component {
         this.state = {
             visible: false,
             currentComponent: 'A',
-            jobs: []
+            jobs: [],
+            searching_text: '',
         }
         user = cookie.load("user_name")
 
@@ -55,6 +56,61 @@ class Java extends Component {
             visible: false
         });
     }
+
+    getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    handleSearching = event => {
+        this.setState({
+            searching_text: event.target.value
+
+        });
+    }
+
+    handleSearchingClick = event => {
+        event.preventDefault();
+
+        var csrftoken = this.getCookie('csrftoken')
+
+        const searching = {};
+        // this.state.user_email = "none";
+        searching.searching_text = this.state.searching_text;
+       
+
+        axios.post('http://127.0.0.1:8000/job-list-follow-searching/', searching, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            }
+        })
+            .then(res => {
+                const jobs = res.data;
+                console.log(jobs)
+                this.setState({ jobs });
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+    a = () => {
+        if (document.getElementsByClassName("log")[0] != "")
+            window.location = "/Welcome";
+        global.value00000 = "ric";
+    }
+
     render() {
         return (
             <div class="container">
@@ -113,7 +169,7 @@ class Java extends Component {
                         </div>
                     </div>
                     <div class="header_search">
-                        <input type="text" style={{ paddingLeft: "40px" }} placeholder="Key word for finding job" id="search_input_text" onkeyup="search_animal()" onKeyDown={(event) => {
+                        <input type="text" style={{ paddingLeft: "40px" }} name="searching_text" onChange={this.handleSearching} placeholder="Key word for finding job" id="search_input_text" onkeyup="search_animal()" onKeyDown={(event) => {
                             if (event.key == "Enter") {
                                 this.setState({
                                     key_value: document.getElementById("search_input_text").value,
@@ -122,12 +178,7 @@ class Java extends Component {
                         }
                         }></input>
                         <div class="search_icon"><BsSearch></BsSearch></div>
-                        <div class="search_button" onClick={() => {
-                            this.setState({
-                                key_value: document.getElementById("search_input_text").value,
-                            })
-                        }
-                        }>
+                        <div class="search_button" onClick={this.handleSearchingClick}>
                             <span >Search</span>
                         </div>
                     </div>

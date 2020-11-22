@@ -93,12 +93,23 @@ class SignUserAccountAPI(APIView):
         user_serializer = AccountUserSerializer(data=request.data)
         if user_serializer.is_valid():
             try:
-                user_serializer.save()
+                users_follow_user_name = account_user.objects.filter(user_name=request.data['user_name'])
+                user_follow_email = account_user.objects.filter(user_email=request.data['user_email'])
+                # print('hello')
+                print(user_follow_email)
+                if users_follow_user_name:
+                    return Response({"success": False, "message": "User name đã tồn tại"})
 
-                return Response({"success": True, "message": "Đăng kí thành công"})
-            except IntegrityError:
-                return Response({"success": False, "message": "Bản ghi đã tồn tại"})
+                elif user_follow_email:
+                    return Response({"success": False, "message": "email đã được đăng kí"})
+                else:
+                    user_serializer.save()
+
+                    return Response({"success": True, "message": "Đăng kí thành công"})
+
             except Exception as e:
+                print('error')
+                print(e)
                 return Response({"success": False, "message": "Đã có lỗi xảy ra"})
         else:
             return Response({"success": False, "message": user_serializer.errors})
@@ -115,9 +126,11 @@ class LoginApi(APIView):
         user_serializer = AccountUserSerializer(data=request.data)
 
         try:
-            # print(user_serializer.data['user_email'])
             if user_serializer.is_valid():
                 users = account_user.objects.filter(user_name=user_serializer.data['user_name'])
+
+                if not users:
+                    return Response({"success": False,'message': "Tài khoản không tồn tại"})
 
                 user_password = [user.password for user in users]
 
@@ -128,20 +141,15 @@ class LoginApi(APIView):
                 else:
                     return Response({"success": False,'message': "Mật khẩu không đúng"})
 
-            return Response({"success": False,'message': "Thất bại"})
+            return Response({"success": False,'message': "Đã có lỗi xảy ra"})
 
         except Exception as e:
             print(e)
-            return Response({'message': "Đã có lỗi xảy ra 2"})
+            return Response({'message': "Đã có lỗi xảy ra"})
 
 class ProfileUserAPI(APIView):
 
     def post(self, request):
-
-        # user_profile_serializer = ProfileUserSerializer(instance=user,data=request.data)
-        # print('hello')
-        # print(request.data)
-        # if user_profile_serializer.is_valid():
 
         try:
 
@@ -154,12 +162,6 @@ class ProfileUserAPI(APIView):
             user.save()
             return Response({"success": True, "message": "Cập nhật thành công"})
 
-        # except IntegrityError:
-        #     # user = profile_user.objects.get(id_user=request.data['id_user'])
-        #     # user.full_name = request.data['full_name']
-        #     # user.cv = request.data['cv']
-        #     # user.save()
-        #     return Response({"success": False, "message": "Bản ghi đã tồn tại"})
         except Exception as e:
 
             try:
@@ -170,11 +172,57 @@ class ProfileUserAPI(APIView):
             except Exception as e:
                 return Response({"success": False, "message": e})
             return Response({"success": False, "message": e})
-        # except Exception as e:
-        #     return Response({"success": False, "message": e})
+
 
     def get(self, request):
         user = profile_user.objects.all()
         serializer = ProfileUserSerializer(user, many=True)
         return Response(serializer.data)
 
+
+class SearchingJobAPI(APIView):
+
+    def post(self, request):
+        searching = request.data
+        jobs = Job.objects.all()
+        jobs_list = []
+
+        try:
+            for job in jobs:
+                name_job = str(job.name)
+                name_company = str(job.id_company.name_company)
+
+                checking_list = name_job.upper() + name_job.lower() + name_job + name_company.upper() + name_company.lower() + name_company
+
+                if searching['searching_text'] in checking_list:
+                    jobs_list.append(job)
+
+
+            serializer = JobSerializer(jobs_list, many=True)
+            return Response(serializer.data)
+
+        except Exception as e:
+            return Response({"message": e})
+
+
+class SearchingCompanyAPI(APIView):
+
+    def post(self, request):
+        searching = request.data
+        companies = company_info.objects.all()
+        companies_list = []
+
+        try:
+            for company in companies:
+                name_company = str(company.name_company)
+
+                checking_list = name_company.lower() + name_company.upper() + name_company
+
+                if searching['searching_text'] in checking_list:
+                    companies_list.append(company)
+
+            serializer = CompanyInfoSerializer(companies_list, many=True)
+            return Response(serializer.data)
+
+        except Exception as e:
+            return Response({"message": e})
