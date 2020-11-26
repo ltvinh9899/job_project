@@ -164,8 +164,7 @@ class SignUp extends Component {
         else {
 
             const notifyLogin = <div style={{ marginTop: "20px" }}>
-            <span style={{ color: "red", fontSize: "15px", marginLeft: "0px" }}>{this.state.messages.message}</span>
-            <span onClick={() => this.redirectLogin()} style={{ color: "green" }}>Đăng nhập</span>
+            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>Tài khoản đã tồn tại</span>
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 
