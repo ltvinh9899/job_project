@@ -29,6 +29,8 @@ import axios from "axios";
 import cookie from 'react-cookies'
 import { FaUserSecret } from "react-icons/fa"
 let user;
+let account_id;
+
 class ViettelJob_tester extends Component {
     constructor(props) {
         super(props);
@@ -39,35 +41,32 @@ class ViettelJob_tester extends Component {
             companies: [],
         }
         user = cookie.load("user_name")
+        account_id = cookie.load("id_account")
     }
 
     componentDidMount() {
         const id_job = this.props.match.params.id;
         axios.get(`http://127.0.0.1:8000/job-detail/${id_job}/`).then(res => {
-            // handle success
             const job_detail = res.data;
             this.setState({ job_detail });
             console.log(job_detail);
         })
             .catch(error => {
-                // handle error
                 console.log(error);
             })
 
     }
-    componentDidMount1() {
+     componentDidMount1() {
         axios.get('http://127.0.0.1:8000/companies-list/').then(res => {
-            // handle success
             const companies = res.data;
             this.setState({ companies });
             console.log(companies);
         })
             .catch(error => {
-                // handle error
                 console.log(error);
             })
 
-    }
+    } 
 
     openModal(name_event) {
         if (name_event == "logout") {
@@ -244,7 +243,11 @@ class ViettelJob_tester extends Component {
                                 </ul>
                             </div>
                             <div class="Viettel_tester_main_content_title_apply">
-                                <div class="apply_button" onClick={() => this.openModal("apply")}>
+                                <div class="apply_button" onClick={() => {
+                                     global.value += (this.state.job_detail.id+"_") 
+                                     cookie.save(account_id, global.value, { path: "/" }) 
+                                  //  this.openModal("apply")
+                                }}>
                                     <span>Apply Now</span>
                                 </div>
                                 <Modal
@@ -253,7 +256,7 @@ class ViettelJob_tester extends Component {
                                     height="350"
                                     backgroundColor="red"
                                     effect="fadeInUp"
-                                    onClickAway={() => this.closeModal("apply")}
+                                    onClickAway={() =>  this.closeModal("apply") }
                                 >
                                     <div><Apply parentMethod={() => this.closeModal("apply")} ></Apply></div>
                                 </Modal>
