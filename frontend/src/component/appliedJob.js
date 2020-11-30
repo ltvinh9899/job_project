@@ -24,9 +24,12 @@ class appliedJob extends Component {
         super(props);
         this.state = {
             jobs: [],
+            jobs_for_print: []
         }
         applied = cookie.load("user_name")
         array=cookie.load(cookie.load("id_account")).split('_')
+        // array = [1,3,4];
+        // console.log(array)
         //array là mảng cookie chứa những id_job mà tài khoản apply, anh chỉ cần lọc công việc theo id trong mảng này nhé
     }
     componentDidMount() {
@@ -34,14 +37,39 @@ class appliedJob extends Component {
         axios.get(`http://127.0.0.1:8000/job-list/`).then(res => {
             // handle success
             const jobs = res.data;
-            this.setState({ jobs });
-            console.log(jobs);
+            // this.setState({ jobs });
+            // console.log(jobs);
+            // const jobs_for_print = [];
+            console.log(array)
+            console.log(jobs)
+            // const formData = new FormData();
+            const jobs_for_print = [];
+            for (let i = 0; i < array.length; i++ ) {
+                for (let j = 0; j < jobs.length; j++)
+                {
+                    if (Number(array[i]) === Number(jobs[i].id)){
+                        jobs_for_print.push(jobs[i])
+                        break;
+                    }
+    
+                }
+            }
+
+            console.log(jobs_for_print)
+            this.setState({jobs_for_print});
         })
             .catch(error => {
                 // handle error
                 console.log(error);
             })
 
+    }
+
+    getJobPrint() {
+        // var i=0;
+        // console.log(this.state.jobs)
+        console.log(array)
+        
     }
 
     render() {
@@ -105,7 +133,7 @@ class appliedJob extends Component {
                 <div style={{ width: "80%", backgroundColor: "white", marginLeft: '10%' }}>
                     <div style={{fontSize:'30px', fontStyle:"italic", marginLeft:"20px", paddingTop:"20px"}}>{applied}</div>
                     <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px", paddingTop: "0px" }}>
-                        {this.state.jobs.map(job => {
+                        {this.state.jobs_for_print.map(job => {
                             return (
                                 <Link to={`/job-detail/${job.id}`} class="Viettel_link" >
                                     <li key={job.id} >

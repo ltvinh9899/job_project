@@ -164,7 +164,7 @@ class SignUp extends Component {
         else {
 
             const notifyLogin = <div style={{ marginTop: "20px" }}>
-            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>Tài khoản đã tồn tại</span>
+            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>{this.state.messages.message}</span>
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 

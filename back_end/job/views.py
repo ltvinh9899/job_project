@@ -160,7 +160,7 @@ class ProfileUserAPI(APIView):
             user.cv = request.data['cv']
             user.full_name = request.data['full_name']
             user.save()
-            return Response({"success": True, "message": "Cập nhật thành công"})
+            return Response({"success": True, "message": "Apply thành công"})
 
         except Exception as e:
 

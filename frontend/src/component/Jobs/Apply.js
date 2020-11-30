@@ -4,6 +4,8 @@ import { BrowserRoute, BrowserRouter, Link, Route } from 'react-router-dom';
 import multiply from "./ViettelJob/image/multiply.png"
 import "./apply.css"
 import axios from "axios"
+import cookie from 'react-cookies'
+
 class Apply extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +17,7 @@ class Apply extends Component {
             full_name: '',
             cv: '',
             id_user: 0,
+            messages: [],
         }
     }
     handleselectedFile = event => {
@@ -76,7 +79,7 @@ class Apply extends Component {
         event.preventDefault();
         var csrftoken = this.getCookie('csrftoken')
         const user = {};
-        this.state.id_user = 210;
+        this.state.id_user = cookie.load("id_account");
         // user.full_name = this.state.full_name;
         // user.id_user = this.state.id_user;
         const formData = new FormData();
@@ -96,7 +99,9 @@ class Apply extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
+                const messages = res.data;
+                this.setState({ messages });
+                console.log(messages);
             }).catch((error) => {
                 console.log(error)
             });
@@ -129,6 +134,9 @@ class Apply extends Component {
                             />
                         </div>
                         <div class="form_error"></div>
+                    </div>
+                    <div>
+                        <span>{this.state.messages.message}</span>
                     </div>
                     <div class="sendCv_button">
                         <button class="cv_button" type="submit" onClick={this.handleApply}>

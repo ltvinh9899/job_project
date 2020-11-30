@@ -246,6 +246,7 @@ class ViettelJob_tester extends Component {
                                 <div class="apply_button" onClick={() => {
                                      global.value += (this.state.job_detail.id+"_") 
                                      cookie.save(account_id, global.value, { path: "/" }) 
+                                     this.openModal("apply")
                                   //  this.openModal("apply")
                                 }}>
                                     <span>Apply Now</span>
