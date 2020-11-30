@@ -28,7 +28,7 @@ class appliedJob extends Component {
         }
         applied = cookie.load("user_name")
         array=cookie.load(cookie.load("id_account")).split('_')
-        // array = [1,3,4];
+        // array = ["1","3","4"];
         // console.log(array)
         //array là mảng cookie chứa những id_job mà tài khoản apply, anh chỉ cần lọc công việc theo id trong mảng này nhé
     }
@@ -47,8 +47,8 @@ class appliedJob extends Component {
             for (let i = 0; i < array.length; i++ ) {
                 for (let j = 0; j < jobs.length; j++)
                 {
-                    if (Number(array[i]) === Number(jobs[i].id)){
-                        jobs_for_print.push(jobs[i])
+                    if (Number(array[i]) === Number(jobs[j].id)){
+                        jobs_for_print.push(jobs[j])
                         break;
                     }
     
@@ -65,13 +65,7 @@ class appliedJob extends Component {
 
     }
 
-    getJobPrint() {
-        // var i=0;
-        // console.log(this.state.jobs)
-        console.log(array)
-        
-    }
-
+    
     render() {
         return (
             <div>
