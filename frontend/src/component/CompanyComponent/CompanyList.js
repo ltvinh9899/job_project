@@ -87,9 +87,9 @@ class CompanyList extends Component {
         var csrftoken = this.getCookie('csrftoken')
 
         const searching = {};
-    
+
         searching.searching_text = this.state.searching_text;
-       
+
 
         axios.post('http://127.0.0.1:8000/company-list-follow-searching/', searching, {
             headers: {
@@ -136,12 +136,12 @@ class CompanyList extends Component {
                                     </Link>
                                 </li>
                                 <li class="user_cookies">
-                                    <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                    <Link to="/applied" style={{ textDecoration: 'none', color: 'white' }}>
                                         <div>
-                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }} ></FaUserSecret>
                                             <span >{user}</span>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </li>
                                 <li class="login">
                                     <div>
@@ -234,7 +234,7 @@ class CompanyList extends Component {
                     </div>
                 </div>
                 <div class="footer_container">
-                    <div class="footer_search" style={{marginLeft:"140px"}}>
+                    <div class="footer_search" style={{ marginLeft: "140px" }}>
                         <div class="footer_search_skill">
                             <div>Jobs by Skill</div>
                             <ul>

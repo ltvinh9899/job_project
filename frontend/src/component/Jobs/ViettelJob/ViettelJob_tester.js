@@ -56,7 +56,7 @@ class ViettelJob_tester extends Component {
             })
 
     }
-     componentDidMount1() {
+    componentDidMount1() {
         axios.get('http://127.0.0.1:8000/companies-list/').then(res => {
             const companies = res.data;
             this.setState({ companies });
@@ -66,7 +66,7 @@ class ViettelJob_tester extends Component {
                 console.log(error);
             })
 
-    } 
+    }
 
     openModal(name_event) {
         if (name_event == "logout") {
@@ -123,17 +123,17 @@ class ViettelJob_tester extends Component {
                                     </Link>
                                 </li>
                                 <li class="user_cookies">
-                                    <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                    <Link to="/applied" style={{ textDecoration: 'none', color: 'white' }}>
                                         <div>
-                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }} ></FaUserSecret>
                                             <span >{user}</span>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </li>
                                 <li class="login">
                                     <div>
                                         <BsPeopleCircle class="login_icon" onClick={() =>
-                                             this.closeModal("logout")}></BsPeopleCircle>
+                                            this.closeModal("logout")}></BsPeopleCircle>
                                         <span onClick={() => this.openModal("logout")}>Log out</span>
                                         <Modal
                                             visible={this.state.visible_first}
@@ -244,9 +244,17 @@ class ViettelJob_tester extends Component {
                             </div>
                             <div class="Viettel_tester_main_content_title_apply">
                                 <div class="apply_button" onClick={() => {
+<<<<<<< HEAD
+                                    global.value += (this.state.job_detail.id + "_")
+                                    cookie.save(account_id, global.value, { path: "/" })
+                                    this.openModal("apply")
+                                    //  this.openModal("apply")
+=======
                                      global.value += (this.state.job_detail.id+"_") 
                                      cookie.save(account_id, global.value, { path: "/" }) 
+                                     this.openModal("apply")
                                   //  this.openModal("apply")
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
                                 }}>
                                     <span>Apply Now</span>
                                 </div>
@@ -256,7 +264,7 @@ class ViettelJob_tester extends Component {
                                     height="350"
                                     backgroundColor="red"
                                     effect="fadeInUp"
-                                    onClickAway={() =>  this.closeModal("apply") }
+                                    onClickAway={() => this.closeModal("apply")}
                                 >
                                     <div><Apply parentMethod={() => this.closeModal("apply")} ></Apply></div>
                                 </Modal>

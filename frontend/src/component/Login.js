@@ -136,7 +136,7 @@ class Login extends Component {
                 </div>
                 <button id="login_button" onClick={() => {
                     if (this.state.messages.success !== true) {
-                        const element = <p style={{ color: "red" }}>Tài khoản không tồn tại</p>
+                    const element = <p style={{ color: "red" }}>{this.state.messages.message}</p>
                         ReactDOM.render(element, document.getElementById("message_login"));
                     }
 
