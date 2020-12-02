@@ -95,12 +95,12 @@ class Java extends Component {
                                 </Link>
                             </li>
                             <li class="user_cookies">
-                                <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
+                                <Link to="/applied" style={{ textDecoration: 'none', color: 'white' }}>
                                     <div>
-                                        <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
+                                        <FaUserSecret class="company_icon" style={{ fontSize: "25px" }} ></FaUserSecret>
                                         <span >{user}</span>
                                     </div>
-                                </div>
+                                </Link>
                             </li>
                             <li class="login">
                                 <div>
@@ -135,7 +135,7 @@ class Java extends Component {
                 <div class="main_container_java">
 
                     <div class="numberJob">
-                    <span>{this.state.type_job.name_job_type}</span>
+                        <span>{this.state.type_job.name_job_type}</span>
                     </div>
                     <ul style={{ listStyle: "none", marginLeft: "-40px", paddingBottom: "20px" }}>
                         {this.state.java_jobs.map(java_job => {
@@ -194,7 +194,7 @@ class Java extends Component {
 
                 </div>
                 <div class="footer_container">
-                    <div class="footer_search" style={{ marginLeft: "140px", marginTop:"-50px" }}>
+                    <div class="footer_search" style={{ marginLeft: "140px", marginTop: "-50px" }}>
                         <div class="footer_search_skill">
                             <div>Jobs by Skill</div>
                             <ul >

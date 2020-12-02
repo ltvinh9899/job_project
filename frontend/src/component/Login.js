@@ -15,8 +15,6 @@ class Login extends Component {
             user_name: '',
             password: '',
             messages: [],
-
-
         }
     }
     move_to_SignUp() {
@@ -117,7 +115,9 @@ class Login extends Component {
   
     render() {
          if (this.state.messages.success === true) {
-            cookie.save("user_name", document.getElementsByClassName("log")[0].value, { path: "/" })
+            cookie.save("user_name", /* this.state.messages.user_id */document.getElementsByClassName("log")[0].value, { path: "/" })//lưu cookies
+            cookie.save("id_account",  this.state.messages.user_id , { path: "/" })//lưu cookies
+            global.value=document.getElementsByClassName("log")[0].value;
             return (
                 <Redirect to="/Welcome"></Redirect>
             )
@@ -136,7 +136,7 @@ class Login extends Component {
                 </div>
                 <button id="login_button" onClick={() => {
                     if (this.state.messages.success !== true) {
-                        const element = <p style={{ color: "red" }}>Tài khoản không tồn tại</p>
+                    const element = <p style={{ color: "red" }}>{this.state.messages.message}</p>
                         ReactDOM.render(element, document.getElementById("message_login"));
                     }
 

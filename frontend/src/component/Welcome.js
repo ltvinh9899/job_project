@@ -14,6 +14,7 @@ import Logout from './Logout'
 
 import ReactDOM from 'react-dom';
 import SignUp from './SignUp'
+import appliedJob from './appliedJob'
 import { BrowserRoute, BrowserRouter, Link, Route } from 'react-router-dom';
 import Java from './JobComponent/Java';
 import CompanyList from './CompanyComponent/CompanyList'
@@ -30,6 +31,7 @@ import KMS from './CompanyComponent/KMS'
 import { Redirect } from "react-router"
 import cookie from 'react-cookies'
 let user;
+let apply;
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +41,8 @@ class Welcome extends Component {
       key_value: "",
       value: ""
     };
-    user = cookie.load("user_name")
+    user = cookie.load("user_name")//gán giá trị cookie cho biến user
+    apply = cookie.load(user)
 
 
   }
@@ -105,10 +108,12 @@ class Welcome extends Component {
                   </li>
                   <li class="user_cookies">
                     <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
-                      <div>
-                        <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
-                        <span >{user}</span>
-                      </div>
+                      <Link to="/applied" style={{ textDecoration: 'none', color: 'white' }}>
+                        <div>
+                          <FaUserSecret class="company_icon" style={{ fontSize: "25px" }} ></FaUserSecret>
+                          <span >{user}</span>
+                        </div>
+                      </Link>
                     </div>
                   </li>
                   <li class="login">

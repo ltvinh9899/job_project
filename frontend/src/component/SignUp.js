@@ -159,22 +159,15 @@ class SignUp extends Component {
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 
-        }
-        
+        }   
         else {
-
             const notifyLogin = <div style={{ marginTop: "20px" }}>
-            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>Tài khoản đã tồn tại</span>
+            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>{this.state.messages.message}</span>
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 
         }
-            
-         
-        
     }
-
-
     render() {
         const password_length = 6;
         var email = document.getElementById('email');
