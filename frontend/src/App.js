@@ -5,6 +5,8 @@ import Java from './component/JobComponent/Java'
 
 
 import Welcome from './component/Welcome';
+import appliedJob from './component/appliedJob';
+
 import Start from './component/Start';
 import logo from './logo.svg';
 import './App.css';
@@ -56,6 +58,8 @@ class App extends Component {
                 <Route path="/job-list" component={Job_list}/>
                 <Route path="/job-list-follow-position/:id" component={Job_follow_position}/>
                 <Route path="/Welcome" component={Welcome}/>  
+                <Route path="/applied" component={appliedJob}/>  
+
                 <Route path="/Login" component={Login}/>  
             </BrowserRouter>  )
          

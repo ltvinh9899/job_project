@@ -159,23 +159,15 @@ class SignUp extends Component {
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 
-        }
-        
+        }   
         else {
-
             const notifyLogin = <div style={{ marginTop: "20px" }}>
-            <span style={{ color: "red", fontSize: "15px", marginLeft: "0px" }}>{this.state.messages.message}</span>
-            <span onClick={() => this.redirectLogin()} style={{ color: "green" }}>Đăng nhập</span>
+            <span style={{ color: "red", fontSize: "20px", marginLeft: "0px" }}>{this.state.messages.message}</span>
         </div>
         ReactDOM.render(notifyLogin, document.getElementById("message_signup"))
 
         }
-            
-         
-        
     }
-
-
     render() {
         const password_length = 6;
         var email = document.getElementById('email');

@@ -27,10 +27,32 @@ class appliedJob extends Component {
             jobs_for_print: []
         }
         applied = cookie.load("user_name")
+
+        if (typeof cookie.load(cookie.load("id_account")) != "undefined") {
+            array = cookie.load(cookie.load("id_account")).split('_')
+        }
+        else {
+            const notifyLogin = <div style={{marginTop:"300px"}}>
+                <p style={{ color: "white", fontSize: "35px", marginLeft: "500px", fontStyle:"italic" }}>Bạn chưa ứng tuyển vào công việc nào</p>
+                <p style={{fontSize:"20px", color:"red", marginLeft:"700px", textDecoration:"underline", cursor:"pointer"}}onClick={() => {window.location="/Welcome"}}>Quay về trang chủ</p>
+            </div>
+        ReactDOM.render(notifyLogin, document.getElementsByTagName("div")[0])
+    }
+    }
+    unique = (arr) => {
+        var newArr = []
+        for (var i = 0; i < arr.length; i++) {
+            if (newArr.indexOf(arr[i]) === -1) {
+                newArr.push(arr[i])
+            }
+        }
+        return newArr
+
         array=cookie.load(cookie.load("id_account")).split('_')
         // array = ["1","3","4"];
         // console.log(array)
         //array là mảng cookie chứa những id_job mà tài khoản apply, anh chỉ cần lọc công việc theo id trong mảng này nhé
+
     }
     componentDidMount() {
 
@@ -40,23 +62,27 @@ class appliedJob extends Component {
             // this.setState({ jobs });
             // console.log(jobs);
             // const jobs_for_print = [];
-            console.log(array)
-            console.log(jobs)
+
+            console.log(array);
+            console.log(jobs);
             // const formData = new FormData();
             const jobs_for_print = [];
-            for (let i = 0; i < array.length; i++ ) {
-                for (let j = 0; j < jobs.length; j++)
-                {
-                    if (Number(array[i]) === Number(jobs[j].id)){
-                        jobs_for_print.push(jobs[j])
-                        break;
+            let array1 = this.unique(array);
+            if (array1.length >= 0) {
+                for (let i = 0; i < array1.length; i++) {
+                    for (let j = 0; j < jobs.length; j++) {
+                        if (Number(array1[i]) === Number(jobs[j].id)) {
+                            jobs_for_print.push(jobs[j])
+                            break;
+                        }
+
                     }
-    
                 }
             }
-
             console.log(jobs_for_print)
-            this.setState({jobs_for_print});
+            this.setState({ jobs_for_print });
+
+        
         })
             .catch(error => {
                 // handle error
@@ -65,10 +91,12 @@ class appliedJob extends Component {
 
     }
 
+
     
     render() {
         return (
-            <div>
+            <div id="header_appliedJob">
+
                  <div class="header_container">
                     <div class="header_company_list">
                         <div class="header_company_left">
