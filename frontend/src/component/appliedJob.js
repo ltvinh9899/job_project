@@ -68,6 +68,7 @@ class appliedJob extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             console.log(array);
             console.log(jobs);
             // const formData = new FormData();
@@ -87,6 +88,8 @@ class appliedJob extends Component {
             console.log(jobs_for_print)
             this.setState({ jobs_for_print });
 =======
+=======
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
 >>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
@@ -119,6 +122,9 @@ class appliedJob extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
+=======
 >>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
 >>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
@@ -144,7 +150,11 @@ class appliedJob extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
     
 >>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78

@@ -11,7 +11,10 @@ import cookie from 'react-cookies'
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { TiTick } from "react-icons/ti"
+=======
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
 >>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
@@ -160,8 +163,13 @@ class Apply extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div style={{marginTop:"-25px", marginBottom:"15px"}}>
                         <span style={{color:"green", paddingTop:"5px", fontSize:"20px", marginLeft:"260px", fontWeight:"bold"}}> {this.state.messages.message} </span>
+=======
+                    <div>
+                        <span>{this.state.messages.message}</span>
+>>>>>>> 7901737a4306199e3b0dfe79e1a0e6ab98074c78
 =======
                     <div>
                         <span>{this.state.messages.message}</span>
