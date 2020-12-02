@@ -88,7 +88,7 @@ class Java extends Component {
         const searching = {};
         // this.state.user_email = "none";
         searching.searching_text = this.state.searching_text;
-
+       
 
         axios.post('http://127.0.0.1:8000/job-list-follow-searching/', searching, {
             headers: {
@@ -139,12 +139,12 @@ class Java extends Component {
                                     </Link>
                                 </li>
                                 <li class="user_cookies">
-                                    <Link to="/applied" style={{ textDecoration: 'none', color: 'white' }}>
+                                    <div class="text-link" style={{ textDecoration: 'none', color: 'white' }} >
                                         <div>
-                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }} ></FaUserSecret>
+                                            <FaUserSecret class="company_icon" style={{ fontSize: "25px" }}></FaUserSecret>
                                             <span >{user}</span>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </li>
                                 <li class="login">
                                     <div>
@@ -253,7 +253,7 @@ class Java extends Component {
                     </ul>
                 </div>
                 <div class="footer_container">
-                    <div class="footer_search" style={{ marginLeft: "140px" }}>
+                    <div class="footer_search" style={{marginLeft:"140px"}}>
                         <div class="footer_search_skill">
                             <div>Jobs by Skill</div>
                             <ul style={{ textAlign: "center" }}>
