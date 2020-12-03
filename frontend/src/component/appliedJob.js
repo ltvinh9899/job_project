@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
 import cookie from 'react-cookies'
 import Logo from "./image/logo.png";
 import { AiFillHome } from "react-icons/ai"

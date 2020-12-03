@@ -269,19 +269,19 @@ class FPT extends Component {
                         </div>
                         <div class="footer_search_company">
                             <div>Jobs by Company</div>
-                            <ul>
-                                <li><Link to="/company/8" class="link_company">Toshiba Software</Link></li>
-                                <li><Link to="/company/9" class="link_company">VNG Corporation</Link></li>
-                                <li><Link to="/company/2" class="link_company">FPT Software</Link></li>
-                                <li><Link to="/company/7" class="link_company">Sun* Inc</Link></li>
-                                <li><Link to="/company/1" class="link_company">Viettel Group</Link></li>
-                                <li><Link to="/company/3" class="link_company">HyBrid Technology</Link></li>
-                                <li><Link to="/company/4" class="link_company">KMS Technology</Link></li>
-                                <li><Link to="/company/5" class="link_company">LG Việt Nam</Link></li>
-                                <li><Link to="/company/6" class="link_company">Misa Software</Link></li>
-                                <li><Link to="/company/10" class="link_company">VNPT Technology</Link></li>
+                            <ul >
+                  {/* <li><Link to="/company/8" class="link_company">Toshiba Software</Link></li> */}
+                  <li><Link to="/company/4" class="link_company">VNG Corporation</Link></li>
+                  <li><Link to="/company/3" class="link_company">FPT Software</Link></li>
+                  <li><Link to="/company/6" class="link_company">Sun* Inc</Link></li>
+                  <li><Link to="/company/2" class="link_company">Viettel Group</Link></li>
+                  <li><Link to="/company/7" class="link_company">HyBrid Technology</Link></li>
+                  <li><Link to="/company/8" class="link_company">KMS Technology</Link></li>
+                  {/* <li><Link to="/company/5" class="link_company">LG Việt Nam</Link></li> */}
+                  <li><Link to="/company/5" class="link_company">Misa Software</Link></li>
+                  {/* <li><Link to="/company/10" class="link_company">VNPT Technology</Link></li> */}
 
-                            </ul>
+                </ul>
                         </div>
                     </div>
                 </div>
